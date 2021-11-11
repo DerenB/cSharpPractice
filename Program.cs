@@ -4,6 +4,10 @@ using System.Text.RegularExpressions;
 
 namespace cSharpPractice
 {
+    /*
+        Methods marked with "Community" are solutions submitted by others on CodeWars
+    */
+
     class Program
     {
         static void Main(string[] args)
@@ -36,6 +40,14 @@ namespace cSharpPractice
             return true;
         }
 
+        static bool CommunityOneValidatePin(string pin)
+        {
+            return Regex.IsMatch(pin, @"^(\d{6}|\d{4})\z");
+        }
+
+        static bool CommunityTwoValidatePin(string pin) =>
+            (pin.Length == 4 || pin.Length == 6) && pin.All(Char.IsDigit);
+
         //Reverses individual words in string input without reversing order of words in string
         static string ReverseWords(string str)
         {
@@ -57,6 +69,11 @@ namespace cSharpPractice
             }
             string result = String.Join(" ", reversed);
             return result;
+        }
+
+        static string CommunityReverseWords(string str)
+        {
+            return string.Join(" ", str.Split(' ').Select(i => new string(i.Reverse().ToArray())));
         }
     }
 }
