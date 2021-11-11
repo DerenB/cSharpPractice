@@ -75,6 +75,13 @@ namespace cSharpPractice
         {
             return string.Join(" ", str.Split(' ').Select(i => new string(i.Reverse().ToArray())));
         }
+
+        //Takes an Array of numbers as input, sorts the array ascending, returns the sum of the two lowest
+        static int SumTwoSmallestNumbers(int[] numbers)
+        {
+            Array.Sort(numbers);
+            return numbers[0] + numbers[1];
+        }
     }
 }
 
