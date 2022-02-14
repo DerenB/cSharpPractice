@@ -1,3 +1,8 @@
+/*
+ * Worker Class
+ * Calculates the Median of the input list in Main
+ */
+
 import java.util.ArrayList;
 import java.util.Collections;
 

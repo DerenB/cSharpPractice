@@ -1,3 +1,8 @@
+/*
+ * Worker Class
+ * Calculates the Average of the input list in Main
+ */
+
 public class WorkerAverage extends Thread {
 
     public WorkerAverage(String name) {

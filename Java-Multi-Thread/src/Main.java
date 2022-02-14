@@ -1,3 +1,10 @@
+/*
+ * Deren Bozer
+ * COSC-525
+ * Winter 2022 - MW 1:00pm
+ * Programming Assignment: Stats Threads
+ */
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -41,6 +48,7 @@ public class Main {
         min.start();
         max.start();
         med.start();
+        std.start();
 
         // Join the threads
         try {
@@ -48,15 +56,6 @@ public class Main {
             min.join();
             max.join();
             med.join();
-        } catch(Exception ex) {
-            System.out.println("Exception has been caught: " + ex);
-        }
-
-        // Start the Standard Deviation thread
-        std.start();
-
-        // Join the Standard Deviation thread
-        try {
             std.join();
         } catch(Exception ex) {
             System.out.println("Exception has been caught: " + ex);

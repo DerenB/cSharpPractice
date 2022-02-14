@@ -1,3 +1,9 @@
+/*
+ * Worker Class
+ * Calculates the Standard Deviation of the input list in Main
+ * Standard Deviation of a sample
+ */
+
 import java.util.ArrayList;
 
 public class WorkerSTD extends Thread {

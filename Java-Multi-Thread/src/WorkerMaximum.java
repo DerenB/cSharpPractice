@@ -1,3 +1,8 @@
+/*
+ * Worker Class
+ * Finds the Maximum value of the input list in Main
+ */
+
 public class WorkerMaximum extends Thread {
 
     public WorkerMaximum(String name) {

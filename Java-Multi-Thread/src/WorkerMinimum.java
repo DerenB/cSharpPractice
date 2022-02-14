@@ -1,3 +1,8 @@
+/*
+ * Worker Class
+ * Finds the Minimum value of the input list in Main
+ */
+
 public class WorkerMinimum extends Thread {
 
     public WorkerMinimum(String name) {
