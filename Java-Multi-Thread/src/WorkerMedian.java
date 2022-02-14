@@ -13,7 +13,7 @@ public class WorkerMedian extends Thread {
 
         // Local Variables
         int count = inputCopy.size();
-        int median;
+        double median;
         int low = count / 2;
         int high = (count / 2) + 1;
 
@@ -22,7 +22,7 @@ public class WorkerMedian extends Thread {
 
         // Finds the median based on if the input list has an even or odd length
         if(count % 2 == 0) {
-            median = (inputCopy.get(low) + inputCopy.get(high)) / 2;
+            median = (inputCopy.get(low) + inputCopy.get(high)) / 2.0;
         } else {
             median = inputCopy.get(low);
         }

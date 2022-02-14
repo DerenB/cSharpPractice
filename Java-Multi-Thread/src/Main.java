@@ -6,8 +6,8 @@ public class Main {
     public static int globalAverage;
     public static int globalMinVal;
     public static int globalMaxVal;
-    public static int globalMedian;
-    public static int globalSTD;
+    public static double globalMedian;
+    public static double globalSTD;
 
     public static ArrayList<Integer> globalInputValues = new ArrayList();
 
@@ -34,6 +34,7 @@ public class Main {
         WorkerMinimum min = new WorkerMinimum("Minimum");
         WorkerMaximum max = new WorkerMaximum("Maximum");
         WorkerMedian med = new WorkerMedian("Median");
+        WorkerSTD std = new WorkerSTD("StandardDeviation");
 
         // Start the threads
         avg.start();
@@ -47,6 +48,16 @@ public class Main {
             min.join();
             max.join();
             med.join();
+        } catch(Exception ex) {
+            System.out.println("Exception has been caught: " + ex);
+        }
+
+        // Start the Standard Deviation thread
+        std.start();
+
+        // Join the Standard Deviation thread
+        try {
+            std.join();
         } catch(Exception ex) {
             System.out.println("Exception has been caught: " + ex);
         }
