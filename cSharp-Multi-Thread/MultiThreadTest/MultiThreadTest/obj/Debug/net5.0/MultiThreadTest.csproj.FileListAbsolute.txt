@@ -1,0 +1,15 @@
+/Users/deren/Documents/GitHub/CSharp-Java-Practice/cSharpPractice/cSharp-Multi-Thread/MultiThreadTest/MultiThreadTest/bin/Debug/net5.0/MultiThreadTest.deps.json
+/Users/deren/Documents/GitHub/CSharp-Java-Practice/cSharpPractice/cSharp-Multi-Thread/MultiThreadTest/MultiThreadTest/bin/Debug/net5.0/MultiThreadTest.runtimeconfig.json
+/Users/deren/Documents/GitHub/CSharp-Java-Practice/cSharpPractice/cSharp-Multi-Thread/MultiThreadTest/MultiThreadTest/bin/Debug/net5.0/MultiThreadTest.runtimeconfig.dev.json
+/Users/deren/Documents/GitHub/CSharp-Java-Practice/cSharpPractice/cSharp-Multi-Thread/MultiThreadTest/MultiThreadTest/bin/Debug/net5.0/MultiThreadTest.dll
+/Users/deren/Documents/GitHub/CSharp-Java-Practice/cSharpPractice/cSharp-Multi-Thread/MultiThreadTest/MultiThreadTest/bin/Debug/net5.0/ref/MultiThreadTest.dll
+/Users/deren/Documents/GitHub/CSharp-Java-Practice/cSharpPractice/cSharp-Multi-Thread/MultiThreadTest/MultiThreadTest/bin/Debug/net5.0/MultiThreadTest.pdb
+/Users/deren/Documents/GitHub/CSharp-Java-Practice/cSharpPractice/cSharp-Multi-Thread/MultiThreadTest/MultiThreadTest/obj/Debug/net5.0/MultiThreadTest.csproj.AssemblyReference.cache
+/Users/deren/Documents/GitHub/CSharp-Java-Practice/cSharpPractice/cSharp-Multi-Thread/MultiThreadTest/MultiThreadTest/obj/Debug/net5.0/MultiThreadTest.GeneratedMSBuildEditorConfig.editorconfig
+/Users/deren/Documents/GitHub/CSharp-Java-Practice/cSharpPractice/cSharp-Multi-Thread/MultiThreadTest/MultiThreadTest/obj/Debug/net5.0/MultiThreadTest.AssemblyInfoInputs.cache
+/Users/deren/Documents/GitHub/CSharp-Java-Practice/cSharpPractice/cSharp-Multi-Thread/MultiThreadTest/MultiThreadTest/obj/Debug/net5.0/MultiThreadTest.AssemblyInfo.cs
+/Users/deren/Documents/GitHub/CSharp-Java-Practice/cSharpPractice/cSharp-Multi-Thread/MultiThreadTest/MultiThreadTest/obj/Debug/net5.0/MultiThreadTest.csproj.CoreCompileInputs.cache
+/Users/deren/Documents/GitHub/CSharp-Java-Practice/cSharpPractice/cSharp-Multi-Thread/MultiThreadTest/MultiThreadTest/obj/Debug/net5.0/MultiThreadTest.dll
+/Users/deren/Documents/GitHub/CSharp-Java-Practice/cSharpPractice/cSharp-Multi-Thread/MultiThreadTest/MultiThreadTest/obj/Debug/net5.0/ref/MultiThreadTest.dll
+/Users/deren/Documents/GitHub/CSharp-Java-Practice/cSharpPractice/cSharp-Multi-Thread/MultiThreadTest/MultiThreadTest/obj/Debug/net5.0/MultiThreadTest.pdb
+/Users/deren/Documents/GitHub/CSharp-Java-Practice/cSharpPractice/cSharp-Multi-Thread/MultiThreadTest/MultiThreadTest/obj/Debug/net5.0/MultiThreadTest.genruntimeconfig.cache
