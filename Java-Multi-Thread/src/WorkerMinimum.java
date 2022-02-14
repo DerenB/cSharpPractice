@@ -5,18 +5,18 @@ public class WorkerMinimum extends Thread {
     }
 
     public void run() {
-        System.out.println("1: Minimum Worker ran");
+        // Local variables
         int min = Main.globalInputValues.get(0);
         int count = Main.globalInputValues.size();
 
-        System.out.println("2: Minimum worker ran");
+        // Loops through the input list for the lowest value
         for(int i = 1; i < count; i++) {
             if(Main.globalInputValues.get(i) < min) {
                 min = Main.globalInputValues.get(i);
             }
         }
 
-        System.out.println("3: Minimum worker ran");
+        // Assigns the value to the global variable
         Main.globalMinVal = min;
     }
 }

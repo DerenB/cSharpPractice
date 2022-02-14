@@ -15,7 +15,6 @@ public class Main {
         // Variables
         Scanner keyb = new Scanner(System.in);
 
-
         // Read in the values
         System.out.println("Enter the values on a single line, each item separated by a space.");
         System.out.println("Enter your list of numbers: ");
@@ -60,6 +59,6 @@ public class Main {
         System.out.println("The maximum value is " + globalMaxVal);
         System.out.println("The median value is " + globalMedian);
         System.out.println("The Standard Deviation is " + globalSTD);
-
+        System.out.println("End of program.");
     }
 }

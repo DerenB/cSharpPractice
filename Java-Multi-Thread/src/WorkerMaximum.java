@@ -5,18 +5,18 @@ public class WorkerMaximum extends Thread {
     }
 
     public void run() {
-        System.out.println("1: Maximum Worker ran");
+        // Local variables
         int max = Main.globalInputValues.get(0);
         int count = Main.globalInputValues.size();
 
-        System.out.println("2: Maximum worker ran");
+        // Loops through the input list for the highest value
         for(int i = 1; i < count; i++) {
             if(Main.globalInputValues.get(i) > max) {
                 max = Main.globalInputValues.get(i);
             }
         }
 
-        System.out.println("3: Maximum worker ran");
+        // Assigns the value to the global variable
         Main.globalMaxVal = max;
     }
 }
