@@ -1,14 +1,15 @@
 ﻿<Properties StartupConfiguration="{A00E7901-614C-4C6F-8798-01A6CA607A3D}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="MultiThreadTest/Program.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="MultiThreadTest/WorkerAverage.cs">
     <Files>
-      <File FileName="MultiThreadTest/Program.cs" Line="1" Column="1" />
+      <File FileName="MultiThreadTest/Program.cs" Line="8" Column="28" />
+      <File FileName="MultiThreadTest/WorkerAverage.cs" Line="8" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="MultiThreadTest" expanded="True">
             <Node name="MultiThreadTest" expanded="True">
-              <Node name="Program.cs" selected="True" />
+              <Node name="WorkerAverage.cs" selected="True" />
             </Node>
           </Node>
         </State>
@@ -21,5 +22,5 @@
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.ItemProperties.MultiThreadTest FirstBuild="True" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.ItemProperties.MultiThreadTest PreferredExecutionTarget="MonoDevelop.Default" />
 </Properties>
