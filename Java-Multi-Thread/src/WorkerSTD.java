@@ -1,6 +1,6 @@
 /*
  * Worker Class
- * Calculates the Standard Deviation of the input list in Main
+ * Calculates the Standard Deviation of the input list in Stats
  * Standard Deviation of a sample
  */
 
@@ -14,7 +14,7 @@ public class WorkerSTD extends Thread {
 
     public void run() {
         // Copy the global list into a local list
-        ArrayList<Integer> inputCopy = new ArrayList<>(Main.globalInputValues);
+        ArrayList<Integer> inputCopy = new ArrayList<>(Stats.globalInputValues);
 
         // Local Variables
         int count = inputCopy.size();
@@ -40,6 +40,6 @@ public class WorkerSTD extends Thread {
         double standardDeviation = Math.sqrt((sumOfSquares / (count - 1)));
 
         // Assigns the value to the global variable
-        Main.globalSTD = Math.round(standardDeviation*100.0)/100.0;
+        Stats.globalSTD = Math.round(standardDeviation*100.0)/100.0;
     }
 }

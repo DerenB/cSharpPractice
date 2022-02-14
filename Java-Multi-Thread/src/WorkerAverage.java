@@ -1,6 +1,6 @@
 /*
  * Worker Class
- * Calculates the Average of the input list in Main
+ * Calculates the Average of the input list in Stats
  */
 
 public class WorkerAverage extends Thread {
@@ -15,10 +15,10 @@ public class WorkerAverage extends Thread {
         int total = 0;
 
         // Gets the size of the input list
-        int count = Main.globalInputValues.size();
+        int count = Stats.globalInputValues.size();
 
         // Adds up the values in the input list
-        for(int num : Main.globalInputValues) {
+        for(int num : Stats.globalInputValues) {
             total += num;
         }
 
@@ -26,6 +26,6 @@ public class WorkerAverage extends Thread {
         averageResult = total / count;
 
         // Assigns the value to the global variable
-        Main.globalAverage = averageResult;
+        Stats.globalAverage = averageResult;
     }
 }

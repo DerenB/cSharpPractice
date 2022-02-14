@@ -1,6 +1,6 @@
 /*
  * Worker Class
- * Calculates the Median of the input list in Main
+ * Calculates the Median of the input list in Stats
  */
 
 import java.util.ArrayList;
@@ -14,7 +14,7 @@ public class WorkerMedian extends Thread {
 
     public void run() {
         // Copy the global list into a local list
-        ArrayList<Integer> inputCopy = new ArrayList<>(Main.globalInputValues);
+        ArrayList<Integer> inputCopy = new ArrayList<>(Stats.globalInputValues);
 
         // Local Variables
         int count = inputCopy.size();
@@ -33,6 +33,6 @@ public class WorkerMedian extends Thread {
         }
 
         // Assigns the value to the global variable
-        Main.globalMedian = median;
+        Stats.globalMedian = median;
     }
 }

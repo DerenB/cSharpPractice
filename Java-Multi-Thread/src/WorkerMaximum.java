@@ -1,6 +1,6 @@
 /*
  * Worker Class
- * Finds the Maximum value of the input list in Main
+ * Finds the Maximum value of the input list in Stats
  */
 
 public class WorkerMaximum extends Thread {
@@ -11,17 +11,17 @@ public class WorkerMaximum extends Thread {
 
     public void run() {
         // Local variables
-        int max = Main.globalInputValues.get(0);
-        int count = Main.globalInputValues.size();
+        int max = Stats.globalInputValues.get(0);
+        int count = Stats.globalInputValues.size();
 
         // Loops through the input list for the highest value
         for(int i = 1; i < count; i++) {
-            if(Main.globalInputValues.get(i) > max) {
-                max = Main.globalInputValues.get(i);
+            if(Stats.globalInputValues.get(i) > max) {
+                max = Stats.globalInputValues.get(i);
             }
         }
 
         // Assigns the value to the global variable
-        Main.globalMaxVal = max;
+        Stats.globalMaxVal = max;
     }
 }

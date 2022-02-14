@@ -10,7 +10,7 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Main {
+public class Stats {
     //Global Variables
     public static int globalAverage;
     public static int globalMinVal;
@@ -70,7 +70,7 @@ public class Main {
         System.out.println("The minimum value is " + globalMinVal);
         System.out.println("The maximum value is " + globalMaxVal);
         System.out.println("The median value is " + globalMedian);
-        System.out.println("The Standard Deviation is " + globalSTD);
+        System.out.println("The Standard Deviation is " + globalSTD + "\n");
         System.out.println("End of program.");
     }
 }

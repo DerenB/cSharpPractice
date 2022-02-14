@@ -1,6 +1,6 @@
 /*
  * Worker Class
- * Finds the Minimum value of the input list in Main
+ * Finds the Minimum value of the input list in Stats
  */
 
 public class WorkerMinimum extends Thread {
@@ -11,17 +11,17 @@ public class WorkerMinimum extends Thread {
 
     public void run() {
         // Local variables
-        int min = Main.globalInputValues.get(0);
-        int count = Main.globalInputValues.size();
+        int min = Stats.globalInputValues.get(0);
+        int count = Stats.globalInputValues.size();
 
         // Loops through the input list for the lowest value
         for(int i = 1; i < count; i++) {
-            if(Main.globalInputValues.get(i) < min) {
-                min = Main.globalInputValues.get(i);
+            if(Stats.globalInputValues.get(i) < min) {
+                min = Stats.globalInputValues.get(i);
             }
         }
 
         // Assigns the value to the global variable
-        Main.globalMinVal = min;
+        Stats.globalMinVal = min;
     }
 }
