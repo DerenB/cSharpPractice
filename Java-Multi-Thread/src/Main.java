@@ -3,6 +3,8 @@
  * COSC-525
  * Winter 2022 - MW 1:00pm
  * Programming Assignment: Stats Threads
+ *
+ * A multi-threaded program that finds various statistics of the input list of numbers
  */
 
 import java.util.ArrayList;
