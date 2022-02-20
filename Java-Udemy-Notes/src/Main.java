@@ -15,8 +15,18 @@ public class Main {
         System.out.println("We are in thread: " + Thread.currentThread().getName());
         System.out.println("We are in thread: " + Thread.currentThread().getName());
 
-        // Changes the name of a thread from Main
+        // CHANGES THE NAME OF A THREAD FROM MAIN
         newThread.setName("ChangeMyName");
+
+        // PAUSES THE THREAD FOR A PERIOD
+        // newThread.sleep(1000);
+
+        // SETS THE PRIORITY OF THE THREAD
+        // RANGE OF 1-10, MAX 10
+        newThread.setPriority(Thread.MAX_PRIORITY);
+
+        // RETURNS THE PRIORITY OF THE THREAD
+        System.out.println("Priority Thread: " + newThread.getPriority());
 
     }
 }
