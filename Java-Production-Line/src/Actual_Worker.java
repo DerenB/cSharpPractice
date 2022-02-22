@@ -58,11 +58,12 @@ public class Actual_Worker extends Thread {
                 // ADDS THE WIDGET TO THE OUTPUT BUFFER
                 newWidget.workUpon();
                 produce();
-                bufferOut.enter(newWidget,getName(), newWidget.getModelNumber());
 
                 // CHECKS IF IT'S THE LAST WORKER
                 if(finalWorker) {
                     bufferOut.finalList(newWidget,getName(),newWidget.modelNumber);
+                } else {
+                    bufferOut.enter(newWidget,getName(), newWidget.getModelNumber());
                 }
             }
             // INCREMENT THE UNIT NUMBER

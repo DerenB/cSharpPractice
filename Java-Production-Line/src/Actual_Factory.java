@@ -27,6 +27,12 @@ public class Actual_Factory {
             workerD.join();
         } catch (Exception e) { }
 
-
+        System.out.println("--------------------------------------------");
+        System.out.println("Widget Processing complete. Final results:");
+        System.out.println();
+        bufferDtoFinal.print();
+        System.out.println("--------------------------------------------");
+        System.out.println();
+        System.out.println("Program closing.");
     }
 }

@@ -71,4 +71,16 @@ public class Actual_BoundedBuffer {
     public synchronized  void finalList(Actual_Widget item, String worker, int widgetNumber) {
         widgetItems.add(item);
     }
+
+
+    // METHOD TO PRINT THE FINAL RESULT
+    public void print() {
+        for(int i = 0; i < widgetItems.size(); i++) {
+            int widgetNum = i+1;
+            System.out.println("--------------------------------------------");
+            System.out.println("Widget # " + widgetNum);
+            System.out.println("Widget ID: " + widgetItems.get(i).getModelNumber());
+            System.out.println("Number of Workers that Processed: " + widgetItems.get(i).numberOfWorkers);
+        }
+    }
 }
