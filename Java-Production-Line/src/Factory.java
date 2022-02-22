@@ -27,6 +27,7 @@ public class Factory {
             workerD.join();
         } catch (Exception e) { }
 
+        // FINAL OUTPUT
         System.out.println("--------------------------------------------");
         System.out.println("Widget Processing complete. Final results:");
         System.out.println();

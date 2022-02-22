@@ -7,13 +7,13 @@ public class MyPanel extends JPanel implements ActionListener {
     // CREATES A SQUARE
     final int PANEL_WIDTH = 600;
     final int PANEL_HEIGHT = 1066;
-    Image enemy;
     Image backgroundImage;
     Timer timer;
-    int xVelocity = 2; // Used to adjust image X-axis speed
-    int yVelocity = 2; // Used to adjust image Y-axis speed
-    int x = 0;
-    int y = 0;
+
+    // CREATES TWO INSTANCES OF ENEMY OBJECT
+    public Enemy val1 = new Enemy(new ImageIcon("Protoss.png").getImage(),0,0);
+    public Enemy val2 = new Enemy(new ImageIcon("Yrel.png").getImage(),300,0);
+
 
     MyPanel() {
         // SETS THE PANEL DIMENSION
@@ -22,7 +22,7 @@ public class MyPanel extends JPanel implements ActionListener {
         // SETS THE BACKGROUND COLOR
         this.setBackground(Color.BLACK);
 
-        enemy = new ImageIcon("Protoss.png").getImage();
+        // CREATES THE BACKGROUND IMAGE
         backgroundImage = new ImageIcon("background.jpg").getImage();
 
         // STARTS THE TIMER WHEN THE PANEL IS INSTANTIATED
@@ -39,7 +39,10 @@ public class MyPanel extends JPanel implements ActionListener {
 
         g2d.drawImage(backgroundImage, 0, 0, null);
 
-        g2d.drawImage(enemy, x, y, null);
+        //g2d.drawImage(enemy, x, y, null);
+        // DRAWS THE IMAGE FOR THE TWO OBJECTS
+        g2d.drawImage(val1.enemyImage,val1.xPosition, val1.yPosition, null);
+        g2d.drawImage(val2.enemyImage,val2.xPosition, val2.yPosition, null);
     }
 
     @Override
@@ -47,23 +50,23 @@ public class MyPanel extends JPanel implements ActionListener {
         // AFTER EVERY SECOND (SET IN THE TIMER VARIABLE 10 MS) AN ACTION IS PERFORMED
         // EVERYTHING IN THIS METHOD WILL OCCUR
 
-        if(x >= PANEL_WIDTH-enemy.getWidth(null) || x < 0) {
-            // CHECKS IF THE ITEM REACHES THE PANEL WIDTH
-            // INVERSES THE XVELOCITY IF IT DOES
-            xVelocity = xVelocity * -1;
-        }
+        // CHECKS IF THE ITEM REACHES THE PANEL WIDTH
+        // INVERSES THE XVELOCITY IF IT DOES
+        val1.widthCheck(PANEL_WIDTH-val1.enemyImage.getWidth(null));
+        val2.widthCheck(PANEL_WIDTH-val2.enemyImage.getWidth(null));
 
-        if(y >= PANEL_HEIGHT-enemy.getHeight(null) || y < 0) {
-            // CHECKS IF THE ITEM REACHES THE PANEL WIDTH
-            // INVERSES THE XVELOCITY IF IT DOES
-            yVelocity = yVelocity * -1;
-        }
+        // CHECKS IF THE ITEM REACHES THE PANEL HEIGHT
+        // INVERSES THE XVELOCITY IF IT DOES
+        val1.heightCheck(PANEL_HEIGHT-val1.enemyImage.getWidth(null));
+        val2.heightCheck(PANEL_HEIGHT-val2.enemyImage.getWidth(null));
 
         // MOVE ENEMY ON X AXIS
-        x = x + xVelocity;
+        val1.moveXAxis();
+        val2.moveXAxis();
 
         // MOVE ENEMY ON Y AXIS
-        y = y + yVelocity;
+        val1.moveYAxis();
+        val2.moveYAxis();
 
         // CALLS THE PAINT METHOD TO REDRAW THE POSITION
         repaint();
