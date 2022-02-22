@@ -1,0 +1,15 @@
+C:\Users\dboze\Documents\LocalRepo\cs_java_practice\cSharpPractice\c#-Assembly-Line\AssemblyLine\obj\Debug\net6.0\AssemblyLine.csproj.AssemblyReference.cache
+C:\Users\dboze\Documents\LocalRepo\cs_java_practice\cSharpPractice\c#-Assembly-Line\AssemblyLine\obj\Debug\net6.0\AssemblyLine.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\dboze\Documents\LocalRepo\cs_java_practice\cSharpPractice\c#-Assembly-Line\AssemblyLine\obj\Debug\net6.0\AssemblyLine.AssemblyInfoInputs.cache
+C:\Users\dboze\Documents\LocalRepo\cs_java_practice\cSharpPractice\c#-Assembly-Line\AssemblyLine\obj\Debug\net6.0\AssemblyLine.AssemblyInfo.cs
+C:\Users\dboze\Documents\LocalRepo\cs_java_practice\cSharpPractice\c#-Assembly-Line\AssemblyLine\obj\Debug\net6.0\AssemblyLine.csproj.CoreCompileInputs.cache
+C:\Users\dboze\Documents\LocalRepo\cs_java_practice\cSharpPractice\c#-Assembly-Line\AssemblyLine\bin\Debug\net6.0\AssemblyLine.exe
+C:\Users\dboze\Documents\LocalRepo\cs_java_practice\cSharpPractice\c#-Assembly-Line\AssemblyLine\bin\Debug\net6.0\AssemblyLine.deps.json
+C:\Users\dboze\Documents\LocalRepo\cs_java_practice\cSharpPractice\c#-Assembly-Line\AssemblyLine\bin\Debug\net6.0\AssemblyLine.runtimeconfig.json
+C:\Users\dboze\Documents\LocalRepo\cs_java_practice\cSharpPractice\c#-Assembly-Line\AssemblyLine\bin\Debug\net6.0\AssemblyLine.dll
+C:\Users\dboze\Documents\LocalRepo\cs_java_practice\cSharpPractice\c#-Assembly-Line\AssemblyLine\bin\Debug\net6.0\AssemblyLine.pdb
+C:\Users\dboze\Documents\LocalRepo\cs_java_practice\cSharpPractice\c#-Assembly-Line\AssemblyLine\obj\Debug\net6.0\AssemblyLine.dll
+C:\Users\dboze\Documents\LocalRepo\cs_java_practice\cSharpPractice\c#-Assembly-Line\AssemblyLine\obj\Debug\net6.0\refint\AssemblyLine.dll
+C:\Users\dboze\Documents\LocalRepo\cs_java_practice\cSharpPractice\c#-Assembly-Line\AssemblyLine\obj\Debug\net6.0\AssemblyLine.pdb
+C:\Users\dboze\Documents\LocalRepo\cs_java_practice\cSharpPractice\c#-Assembly-Line\AssemblyLine\obj\Debug\net6.0\AssemblyLine.genruntimeconfig.cache
+C:\Users\dboze\Documents\LocalRepo\cs_java_practice\cSharpPractice\c#-Assembly-Line\AssemblyLine\obj\Debug\net6.0\ref\AssemblyLine.dll
