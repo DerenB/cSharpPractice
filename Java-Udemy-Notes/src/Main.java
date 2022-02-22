@@ -19,7 +19,11 @@ public class Main {
         newThread.setName("ChangeMyName");
 
         // PAUSES THE THREAD FOR A PERIOD
-        // newThread.sleep(1000);
+        try {
+            newThread.sleep(1000);
+        } catch (InterruptedException e) {
+            System.out.println("Err");
+        }
 
         // SETS THE PRIORITY OF THE THREAD
         // RANGE OF 1-10, MAX 10

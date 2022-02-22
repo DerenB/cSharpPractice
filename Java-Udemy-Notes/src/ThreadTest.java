@@ -6,6 +6,7 @@ public class ThreadTest extends Thread {
     }
 
     // Runs the Thread
+    @Override
     public void run() {
         System.out.println("My thread " + Thread.currentThread().getName() + " is starting.");
         System.out.println("Poo");
