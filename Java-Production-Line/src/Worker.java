@@ -1,4 +1,4 @@
-public class Actual_Worker extends Thread {
+public class Worker extends Thread {
     // VARIABLES
     final private boolean producer; // BOOLEAN TO LABEL WORKER AS FIRST PRODUCER
     private boolean finalWorker = false; // BOOLEAN TO LABEL WORKER AS FINAL PRODUCER
@@ -6,22 +6,22 @@ public class Actual_Worker extends Thread {
     private int unitNumber = 1; // CURRENT WIDGET BEING PRODUCED
 
     // BUFFER OBJECT
-    private Actual_BoundedBuffer bufferIn;
-    final private Actual_BoundedBuffer bufferOut;
+    private BoundedBuffer bufferIn;
+    final private BoundedBuffer bufferOut;
 
     // WIDGET OBJECT
-    private Actual_Widget newWidget;
+    private Widget newWidget;
     private String widgetModelNumber;
 
     // DEFAULT CONSTRUCTOR FOR PRODUCER-ONLY
-    public Actual_Worker(String name, boolean newProducer, Actual_BoundedBuffer b) {
+    public Worker(String name, boolean newProducer, BoundedBuffer b) {
         super(name);
         producer = newProducer;
         bufferOut = b;
     }
 
     // DEFAULT CONSTRUCTOR FOR PRODUCER-CONSUMER
-    public Actual_Worker(String name, boolean newProducer, Actual_BoundedBuffer in, Actual_BoundedBuffer out) {
+    public Worker(String name, boolean newProducer, BoundedBuffer in, BoundedBuffer out) {
         super(name);
         producer = newProducer;
         bufferIn = in;
@@ -29,7 +29,7 @@ public class Actual_Worker extends Thread {
     }
 
     // DEFAULT CONSTRUCTOR FOR CONSUMER-ONLY
-    public Actual_Worker(String name, boolean newProducer, Actual_BoundedBuffer in, Actual_BoundedBuffer out, boolean end) {
+    public Worker(String name, boolean newProducer, BoundedBuffer in, BoundedBuffer out, boolean end) {
         super(name);
         producer = newProducer;
         bufferIn = in;
@@ -41,7 +41,7 @@ public class Actual_Worker extends Thread {
         // RUNS UNTIL 24 UNITS ARE PROCESSES
         while(unitNumber <= numberOfUnits) {
             // SLEEPS THE THREAD FOR A PERIOD
-            Actual_BoundedBuffer.napping();
+            BoundedBuffer.napping();
 
             // CHECKS IF IT'S THE FIRST WORKER
             if(producer) {
@@ -73,7 +73,7 @@ public class Actual_Worker extends Thread {
 
     // METHOD FOR THE INITIAL CREATION OF THE WIDGET
     public void produceNewWidget() {
-        newWidget = new Actual_Widget(unitNumber);
+        newWidget = new Widget(unitNumber);
         widgetModelNumber = newWidget.getModelNumber();
         System.out.println(getName() + " Produced Widget #" + unitNumber + ". New Widget ID: "+ newWidget.getModelNumber());
         //System.out.printf("%s Produced Widget #%d\n",getName(),unitNumber);

@@ -1,17 +1,17 @@
-public class Actual_Factory {
+public class Factory {
     public static void main(String[] args) {
 
         // CREATE THE THREE BUFFER CONVEYOR BELTS
-        Actual_BoundedBuffer bufferAtoB = new Actual_BoundedBuffer();
-        Actual_BoundedBuffer bufferBtoC = new Actual_BoundedBuffer();
-        Actual_BoundedBuffer bufferCtoD = new Actual_BoundedBuffer();
-        Actual_BoundedBuffer bufferDtoFinal = new Actual_BoundedBuffer();
+        BoundedBuffer bufferAtoB = new BoundedBuffer();
+        BoundedBuffer bufferBtoC = new BoundedBuffer();
+        BoundedBuffer bufferCtoD = new BoundedBuffer();
+        BoundedBuffer bufferDtoFinal = new BoundedBuffer();
 
         // CREATE THE WORKERS
-        Actual_Worker workerA = new Actual_Worker("Worker A", true, bufferAtoB);
-        Actual_Worker workerB = new Actual_Worker("Worker B", false, bufferAtoB, bufferBtoC);
-        Actual_Worker workerC = new Actual_Worker("Worker C", false, bufferBtoC, bufferCtoD);
-        Actual_Worker workerD = new Actual_Worker("Worker D", false, bufferCtoD, bufferDtoFinal, true);
+        Worker workerA = new Worker("Worker A", true, bufferAtoB);
+        Worker workerB = new Worker("Worker B", false, bufferAtoB, bufferBtoC);
+        Worker workerC = new Worker("Worker C", false, bufferBtoC, bufferCtoD);
+        Worker workerD = new Worker("Worker D", false, bufferCtoD, bufferDtoFinal, true);
 
         // START THE WORKER THREADS
         workerA.start();

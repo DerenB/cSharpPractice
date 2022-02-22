@@ -1,11 +1,11 @@
 import java.util.Random;
 
-public class Actual_Widget {
+public class Widget {
     // VARIABLES
     public int modelNumber, red, green, blue, numberOfWorkers;
 
     // CONSTRUCTOR
-    public Actual_Widget(int productionCount) {
+    public Widget(int productionCount) {
         modelNumber = productionCount;
         red = RandomValue();
         green = RandomValue();
