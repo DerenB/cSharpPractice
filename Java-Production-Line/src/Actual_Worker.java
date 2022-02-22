@@ -56,6 +56,7 @@ public class Actual_Worker extends Thread {
                 System.out.println(getName() + " removed " + newWidget.getModelNumber());
 
                 // ADDS THE WIDGET TO THE OUTPUT BUFFER
+                newWidget.workUpon();
                 produce();
                 bufferOut.enter(newWidget,getName(), newWidget.getModelNumber());
 
@@ -79,6 +80,7 @@ public class Actual_Worker extends Thread {
 
     // METHOD FOR PROCESSING THE WIDGET BY LATER WORKERS
     public void produce() {
-        System.out.printf("%s Processed the Widget #%d\n",getName(),unitNumber);
+        System.out.println(getName() + " Processed Widget " + newWidget.getModelNumber());
+        //System.out.printf("%s Processed the Widget #%d\n",getName(),unitNumber);
     }
 }

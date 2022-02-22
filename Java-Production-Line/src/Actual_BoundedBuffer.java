@@ -53,6 +53,7 @@ public class Actual_BoundedBuffer {
 
         // CHECKS TO SEE IF THE INPUT LIST IS EMPTY
         while(widgetItems.size() == 0) {
+            System.out.println(worker + " is waiting.");
             try {
                 wait();
             } catch (InterruptedException e) { }

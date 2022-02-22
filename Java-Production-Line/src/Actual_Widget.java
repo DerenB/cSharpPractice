@@ -19,9 +19,8 @@ public class Actual_Widget {
         return random.nextInt(256);
     }
 
-    public int workUpon() {
+    public void workUpon() {
         numberOfWorkers++;
-        return numberOfWorkers;
     }
 
     public String getModelNumber() {
