@@ -21,7 +21,7 @@ namespace AssemblyLine
         public static void napping()
         {
             Random rand = new Random();
-            int sleepTime = napTime * rand.Next(1001);
+            int sleepTime = napTime * rand.Next(10);
             try
             {
                 Thread.Sleep(sleepTime);
@@ -30,6 +30,7 @@ namespace AssemblyLine
 
         public async void enter(Widget item, string worker, string widgetNumber)
         {
+            /*
             while (widgetItems.Count() == 3)
             {
                 try
@@ -39,6 +40,7 @@ namespace AssemblyLine
                 } catch (Exception e) { }
                 
             } 
+            */
 
             numberOfItemsInBuffer++;
 
@@ -57,10 +59,12 @@ namespace AssemblyLine
         {
             Widget item;
 
+            /*
             while(widgetItems.Count() == 0)
             {
                 Console.WriteLine($"{worker} is waiting.");
             }
+            */
 
             numberOfItemsInBuffer--;
             item = widgetItems.First();

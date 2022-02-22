@@ -47,7 +47,43 @@ namespace AssemblyLine
 
         public void run()
         {
+            while(unitNumber <= numberOfUnits)
+            {
+                //BoundedBuffer.napping();
 
+                if(producer)
+                {
+                    produceNewWidget();
+                    bufferOut.enter(newWidget,workerName,widgetModelNumber);
+                } else
+                {
+                    newWidget = bufferIn.remove(workerName);
+                    Console.WriteLine($"{workerName} removed {newWidget.getModelNumber()}.");
+
+                    newWidget.workUpon();
+                    produce();
+
+                    if(finalWorker)
+                    {
+                        bufferOut.finalList(newWidget, workerName, newWidget.modelNumber);
+                    } else
+                    {
+                        bufferOut.enter(newWidget, workerName, newWidget.getModelNumber());
+                    }
+                }
+            }
+        }
+
+        public void produceNewWidget()
+        {
+            newWidget = new Widget(unitNumber);
+            widgetModelNumber = newWidget.getModelNumber();
+            Console.WriteLine($"{workerName} Produced Widget #{unitNumber}. New Widget ID: {newWidget.getModelNumber()}.");
+        }
+
+        public void produce()
+        {
+            Console.WriteLine($"{workerName} Processed Widget {newWidget.getModelNumber()}.");
         }
     }
 }
