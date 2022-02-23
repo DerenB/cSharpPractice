@@ -49,11 +49,14 @@ public class Worker extends Thread {
                 produceNewWidget();
 
                 // ENTER OBJECT INTO OUTBOUND BELT
-                bufferOut.enter(newWidget, getName(), widgetModelNumber);
+                bufferOut.enterScreen(Factory.cubeArray[unitNumber]);
+                bufferOut.enter(newWidget, getName(), widgetModelNumber, Factory.cubeArray[unitNumber], unitNumber);
             } else {
                 // REMOVES THE FIRST WIDGET FROM THE PRIOR BUFFER
+                //bufferIn.nextBelt(Factory.cubeArray[unitNumber]);
                 newWidget = bufferIn.remove(getName());
-                System.out.println(getName() + " removed " + newWidget.getModelNumber());
+
+                System.out.println(getName() + " removed " + newWidget.getModelNumber() + ". Item Number: " + unitNumber);
 
                 // ADDS THE WIDGET TO THE OUTPUT BUFFER
                 newWidget.workUpon();
@@ -61,9 +64,15 @@ public class Worker extends Thread {
 
                 // CHECKS IF IT'S THE LAST WORKER
                 if(finalWorker) {
+                    Factory.cubeArray[unitNumber].exitScreen();
                     bufferOut.finalList(newWidget,getName(),newWidget.modelNumber);
                 } else {
-                    bufferOut.enter(newWidget,getName(), newWidget.getModelNumber());
+                    if(newWidget.numberOfWorkers == 2) {
+                        bufferOut.secondBelt(Factory.cubeArray[unitNumber]);
+                    } else if (newWidget.numberOfWorkers == 3) {
+                        bufferOut.thirdBelt(Factory.cubeArray[unitNumber]);
+                    }
+                    bufferOut.enter(newWidget,getName(), newWidget.getModelNumber(), Factory.cubeArray[unitNumber], unitNumber);
                 }
             }
             // INCREMENT THE UNIT NUMBER
@@ -76,12 +85,12 @@ public class Worker extends Thread {
         newWidget = new Widget(unitNumber);
         widgetModelNumber = newWidget.getModelNumber();
         System.out.println(getName() + " Produced Widget #" + unitNumber + ". New Widget ID: "+ newWidget.getModelNumber());
-        //System.out.printf("%s Produced Widget #%d\n",getName(),unitNumber);
+
     }
 
     // METHOD FOR PROCESSING THE WIDGET BY LATER WORKERS
     public void produce() {
         System.out.println(getName() + " Processed Widget " + newWidget.getModelNumber());
-        //System.out.printf("%s Processed the Widget #%d\n",getName(),unitNumber);
+
     }
 }

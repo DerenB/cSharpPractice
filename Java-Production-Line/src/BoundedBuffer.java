@@ -17,12 +17,26 @@ public class BoundedBuffer {
     public static void napping() {
         int sleepTime = (int) (NAP_TIME * Math.random() );
         try {
-            Thread.sleep(sleepTime*100); }
+            Thread.sleep(sleepTime*800); }
         catch(InterruptedException e) { }
     }
 
+    public void enterScreen(AnimationCube cube) {
+        switch (numberOfItemsInBuffer) {
+            case 0:
+                cube.setPosition(404);
+                break;
+            case 1:
+                cube.setPosition(299);
+                break;
+            case 2:
+                cube.setPosition(194);
+                break;
+        }
+    }
+
     // METHOD TO ENTER ITEMS ONTO THE BUFFER
-    public synchronized void enter(Widget item, String worker, String widgetNumber) {
+    public synchronized void enter(Widget item, String worker, String widgetNumber, AnimationCube cube, int unitNumber) {
         // CHECKS TO SEE IF THE BUFFER IS FULL
         while (widgetItems.size() == 3) {
             try {
@@ -45,6 +59,34 @@ public class BoundedBuffer {
 
         // NOTIFIES NEXT THREAD
         notify();
+    }
+
+    public void secondBelt(AnimationCube cube) {
+        switch (numberOfItemsInBuffer) {
+            case 0:
+                cube.setPosition(825);
+                break;
+            case 1:
+                cube.setPosition(720);
+                break;
+            case 2:
+                cube.setPosition(615);
+                break;
+        }
+    }
+
+    public void thirdBelt(AnimationCube cube) {
+        switch (numberOfItemsInBuffer) {
+            case 0:
+                cube.setPosition(1246);
+                break;
+            case 1:
+                cube.setPosition(1141);
+                break;
+            case 2:
+                cube.setPosition(1036);
+                break;
+        }
     }
 
     // METHOD FOR REMOVING ITEMS FROM THE BUFFER

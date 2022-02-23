@@ -2,7 +2,7 @@ import java.util.Random;
 
 public class Widget {
     // VARIABLES
-    public int modelNumber, red, green, blue, numberOfWorkers;
+    public int modelNumber, red, green, blue, numberOfWorkers, beltPosition;
 
     // CONSTRUCTOR
     public Widget(int productionCount) {
@@ -11,6 +11,7 @@ public class Widget {
         green = RandomValue();
         blue = RandomValue();
         numberOfWorkers = 1;
+        beltPosition = 0;
     }
 
     // GENERATES A RANDOM VALUE FROM 0-255

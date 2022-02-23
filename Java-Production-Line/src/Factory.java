@@ -1,5 +1,11 @@
 public class Factory {
+    public static AnimationCube[] cubeArray = new AnimationCube[26];
+
     public static void main(String[] args) {
+
+
+        // CREATES THE ANIMATION WINDOW
+        new AnimationFrame();
 
         // CREATE THE THREE BUFFER CONVEYOR BELTS
         BoundedBuffer bufferAtoB = new BoundedBuffer();
