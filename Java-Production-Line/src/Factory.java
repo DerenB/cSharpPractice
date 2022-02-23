@@ -3,15 +3,14 @@ public class Factory {
 
     public static void main(String[] args) {
 
-
         // CREATES THE ANIMATION WINDOW
         new AnimationFrame();
 
         // CREATE THE THREE BUFFER CONVEYOR BELTS
-        BoundedBuffer bufferAtoB = new BoundedBuffer();
-        BoundedBuffer bufferBtoC = new BoundedBuffer();
-        BoundedBuffer bufferCtoD = new BoundedBuffer();
-        BoundedBuffer bufferDtoFinal = new BoundedBuffer();
+        BoundedBuffer bufferAtoB = new BoundedBuffer("Belt A-B");
+        BoundedBuffer bufferBtoC = new BoundedBuffer("Belt B-C");
+        BoundedBuffer bufferCtoD = new BoundedBuffer("Belt C-D");
+        BoundedBuffer bufferDtoFinal = new BoundedBuffer("Exit Belt");
 
         // CREATE THE WORKERS
         Worker workerA = new Worker("Worker A", true, bufferAtoB);

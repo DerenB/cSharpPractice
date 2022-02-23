@@ -48,15 +48,17 @@ public class Worker extends Thread {
                 // CREATES THE NEW WIDGET
                 produceNewWidget();
 
-                // ENTER OBJECT INTO OUTBOUND BELT
+                // ENTERS THE CUBE INTO THE ANIMATION
                 bufferOut.enterScreen(Factory.cubeArray[unitNumber]);
+
+                // ENTER OBJECT INTO OUTBOUND BELT
                 bufferOut.enter(newWidget, getName(), widgetModelNumber, Factory.cubeArray[unitNumber], unitNumber);
             } else {
                 // REMOVES THE FIRST WIDGET FROM THE PRIOR BUFFER
-                //bufferIn.nextBelt(Factory.cubeArray[unitNumber]);
                 newWidget = bufferIn.remove(getName());
 
-                System.out.println(getName() + " removed " + newWidget.getModelNumber() + ". Item Number: " + unitNumber);
+                // WIDGET RETRIEVAL MESSAGE
+                System.out.println(getName() + " is retrieving " + newWidget.getModelNumber() + " from Belt "+ bufferIn.bufferName + ". Item Number: " + unitNumber);
 
                 // ADDS THE WIDGET TO THE OUTPUT BUFFER
                 newWidget.workUpon();
@@ -64,14 +66,19 @@ public class Worker extends Thread {
 
                 // CHECKS IF IT'S THE LAST WORKER
                 if(finalWorker) {
+                    // REMOVES THE CUBE FROM THE ANIMATION
                     Factory.cubeArray[unitNumber].exitScreen();
+
+                    // REMOVES THE WIDGET FROM THE LAST BELT AND ADDS IT TO THE FINAL OUTPUT
                     bufferOut.finalList(newWidget,getName(),newWidget.modelNumber);
                 } else {
+                    // CHECKS IF IT'S GOING TO THE SECOND OR THIRD BELT FOR THE ANIMATION
                     if(newWidget.numberOfWorkers == 2) {
                         bufferOut.secondBelt(Factory.cubeArray[unitNumber]);
                     } else if (newWidget.numberOfWorkers == 3) {
                         bufferOut.thirdBelt(Factory.cubeArray[unitNumber]);
                     }
+                    // ADDS THE WIDGET TO THE NEXT BELT
                     bufferOut.enter(newWidget,getName(), newWidget.getModelNumber(), Factory.cubeArray[unitNumber], unitNumber);
                 }
             }
@@ -84,13 +91,11 @@ public class Worker extends Thread {
     public void produceNewWidget() {
         newWidget = new Widget(unitNumber);
         widgetModelNumber = newWidget.getModelNumber();
-        System.out.println(getName() + " Produced Widget #" + unitNumber + ". New Widget ID: "+ newWidget.getModelNumber());
-
+        System.out.println(getName() + " is working on Widget #" + unitNumber + ". New Widget ID: "+ newWidget.getModelNumber());
     }
 
     // METHOD FOR PROCESSING THE WIDGET BY LATER WORKERS
     public void produce() {
-        System.out.println(getName() + " Processed Widget " + newWidget.getModelNumber());
-
+        System.out.println(getName() + " is working on Widget " + newWidget.getModelNumber());
     }
 }

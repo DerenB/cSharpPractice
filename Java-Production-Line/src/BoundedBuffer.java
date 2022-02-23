@@ -5,12 +5,14 @@ public class BoundedBuffer {
     // VARIABLES
     public static final int NAP_TIME = 5;
     private static final int BUFFER_SIZE = 3;
+    public String bufferName;
     private LinkedList<Widget> widgetItems = new LinkedList<>(); // CREATING THE LINKED LIST
     private int numberOfItemsInBuffer; // NUMBER OF ITEMS IN THE BUFFER
 
     // CONSTRUCTOR
-    public BoundedBuffer() {
+    public BoundedBuffer(String name) {
         numberOfItemsInBuffer = 0;
+        bufferName = name;
     }
 
     // METHOD TO SLEEP THE THREAD FOR A PERIOD
@@ -21,6 +23,7 @@ public class BoundedBuffer {
         catch(InterruptedException e) { }
     }
 
+    // ANIMATION METHOD FOR ADDING NEW CUBES TO THE SCREEN
     public void enterScreen(AnimationCube cube) {
         switch (numberOfItemsInBuffer) {
             case 0:
@@ -52,15 +55,16 @@ public class BoundedBuffer {
 
         // PROGRESS OUTPUT
         if(numberOfItemsInBuffer == BUFFER_SIZE) {
-            System.out.println(worker + " entered Widget " + widgetNumber + ". Buffer FULL.");
+            System.out.println(worker + " entered Widget " + widgetNumber + " onto Belt " + bufferName + ". Buffer FULL.");
         } else {
-            System.out.println(worker + " entered Widget " + widgetNumber + ". Buffer size is " + numberOfItemsInBuffer);
+            System.out.println(worker + " entered Widget " + widgetNumber + " onto Belt " + bufferName + ". Buffer size is " + numberOfItemsInBuffer);
         }
 
         // NOTIFIES NEXT THREAD
         notify();
     }
 
+    // ANIMATION METHOD FOR MOVING CUBES FROM THE FIRST BELT TO THE SECOND BELT
     public void secondBelt(AnimationCube cube) {
         switch (numberOfItemsInBuffer) {
             case 0:
@@ -75,6 +79,7 @@ public class BoundedBuffer {
         }
     }
 
+    // ANIMATION METHOD FOR MOVING CUBES FROM THE SECOND BELT TO THE THIRD BELT
     public void thirdBelt(AnimationCube cube) {
         switch (numberOfItemsInBuffer) {
             case 0:
@@ -103,15 +108,14 @@ public class BoundedBuffer {
 
         numberOfItemsInBuffer--;
         item = widgetItems.removeFirst();
-
         notify();
-
         return item;
     }
 
     // METHOD FOR ADDING THE COMPLETED ITEMS TO THE FINAL OUTPUT LIST
     public synchronized  void finalList(Widget item, String worker, int widgetNumber) {
         widgetItems.add(item);
+        System.out.println(worker + " completed work on Widget " + widgetNumber + ". Widget exiting production line.");
     }
 
 
