@@ -1,3 +1,10 @@
+/*
+ * DEREN BOZER
+ * COSC-525 MW 1:00PM
+ * WINTER 2022
+ * PROGRAMMING ASSIGNMENT: PRODUCTION LINE
+ */
+
 public class Worker extends Thread {
     // VARIABLES
     final private boolean producer; // BOOLEAN TO LABEL WORKER AS FIRST PRODUCER

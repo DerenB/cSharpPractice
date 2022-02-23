@@ -1,3 +1,10 @@
+/*
+ * DEREN BOZER
+ * COSC-525 MW 1:00PM
+ * WINTER 2022
+ * PROGRAMMING ASSIGNMENT: PRODUCTION LINE
+ */
+
 import javax.swing.*;
 
 public class AnimationFrame extends JFrame {
