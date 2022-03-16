@@ -60,11 +60,11 @@ public class FCFSScheduler extends Scheduler {
      */
     public void blockTilThereIsAJob() {
         if (hasRunningJob()) {
-            System.out.println("Has running job flag");
+            //System.out.println("Has running job flag");
             return;
         }
         if (hasJobsQueued()) {
-            System.out.println("Has job queued flag");
+            //System.out.println("Has job queued flag");
             return;
         }
 

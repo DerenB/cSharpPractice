@@ -13,7 +13,7 @@ public class FactoryItem implements JobWorkable {
         String jobThread = Thread.currentThread().getName();
 
 
-        String status = "Job " + job + " did blah on thread " + jobThread + ".";
+        String status = "Job " + job + " did some work on thread " + jobThread + ".";
         System.out.println(status);
 
         try {
