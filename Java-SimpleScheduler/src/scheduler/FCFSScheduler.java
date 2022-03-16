@@ -49,7 +49,8 @@ public class FCFSScheduler extends Scheduler {
         } else {
             currentlyRunningJob = list.poll();
             currentlyRunningJob.start();
-            return true; // TO_DO ***SHOULDN'T ALWAYS RETURN TRUE***
+
+            return true; // TO_DO *** SHOULDN'T ALWAYS RETURN TRUE ***
         }
     }
 
@@ -58,21 +59,30 @@ public class FCFSScheduler extends Scheduler {
      * run.  Will block if the ready queue is empty until a Job is added to the queue.
      */
     public void blockTilThereIsAJob() {
-        if (hasRunningJob())
+        if (hasRunningJob()) {
+            System.out.println("Has running job flag");
             return;
-        if (hasJobsQueued())
+        }
+        if (hasJobsQueued()) {
+            System.out.println("Has job queued flag");
             return;
+        }
+
         //System.out.println("TO_DO: blockTilThereIsAJob not yet implemented");
         /*
          * Place code here that will cause the calling thread to block until the ready queue
          * contains a Job
          */
-        try {
-            System.out.println("Kernel waiting for a job.");
-            this.wait();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+        synchronized (this) {
+            try {
+                System.out.println("Kernel waiting for a job.");
+                this.wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
+
+
         System.out.println("evidently there is now a job on readyQ");
     }
 

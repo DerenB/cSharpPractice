@@ -17,7 +17,7 @@ public class FactoryItem implements JobWorkable {
         System.out.println(status);
 
         try {
-            Thread.currentThread().sleep(5);
+            Thread.currentThread().sleep(100);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
