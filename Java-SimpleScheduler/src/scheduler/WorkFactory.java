@@ -20,7 +20,7 @@ public class WorkFactory {
     private int jobCount = 0;
 
     public JobWorkable createWork() {
-        System.out.println("TO_DO: complete WorkFactory.createWork");
+        //System.out.println("TO_DO: complete WorkFactory.createWork");
         /*
          * Return a new instance of a class that implements JobWorkable.
          * You should provide that class.  After running your program
@@ -28,5 +28,11 @@ public class WorkFactory {
          * of a class that I have created (which will also implement
          * JobWorkable.)
          */
+        jobCount++;
+
+//        Factory job = new Factory(jobCount);
+//        return job;
+
+        return new Factory(jobCount);
     }
 }

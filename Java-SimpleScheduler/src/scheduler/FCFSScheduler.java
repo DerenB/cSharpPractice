@@ -49,9 +49,8 @@ public class FCFSScheduler extends Scheduler {
         } else {
             currentlyRunningJob = list.poll();
             currentlyRunningJob.start();
+            return true; // TO_DO ***SHOULDN'T ALWAYS RETURN TRUE***
         }
-
-        return true; // TO_DO ***SHOULDN'T ALWAYS RETURN TRUE***
     }
 
     /**
@@ -63,7 +62,7 @@ public class FCFSScheduler extends Scheduler {
             return;
         if (hasJobsQueued())
             return;
-        System.out.println("TO_DO: blockTilThereIsAJob not yet implemented");
+        //System.out.println("TO_DO: blockTilThereIsAJob not yet implemented");
         /*
          * Place code here that will cause the calling thread to block until the ready queue
          * contains a Job

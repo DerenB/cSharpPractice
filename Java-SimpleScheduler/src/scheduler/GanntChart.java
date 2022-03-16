@@ -42,6 +42,7 @@ public class GanntChart {
 
     public void print() {
         System.out.println("TO_DO GanntChart.print not yet implemented");
+        System.out.println("Print");
     }
 
     /**
