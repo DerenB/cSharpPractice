@@ -43,8 +43,8 @@ public class GanntChart {
     public void print() {
         //System.out.println("TO_DO GanntChart.print not yet implemented");
         System.out.println();
-        System.out.println("GANNT CHART");
-        System.out.printf("BurstStart\t\t" + "BurstEnd\t\t" + "Job\n");
+        System.out.println("GANNT CHART:");
+        System.out.printf("BurstStart\t\t" + "BurstEnd\t\t" + "JOB\n");
 
         for(GanntRecord recItem : events) {
             //System.out.println((recItem.startTime-systemStartTime) + "\t\t\t\t" + (recItem.endTime-systemStartTime) + "\t\t\t\t" + recItem.eventDescriptor);
