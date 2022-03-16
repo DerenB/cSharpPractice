@@ -1,9 +1,9 @@
 package scheduler;
 
-public class Factory implements JobWorkable {
+public class FactoryItem implements JobWorkable {
     public int job;
 
-    public Factory(int inValue) {
+    public FactoryItem(int inValue) {
         job = inValue;
         //System.out.println("Factory class did value: " + job);
     }

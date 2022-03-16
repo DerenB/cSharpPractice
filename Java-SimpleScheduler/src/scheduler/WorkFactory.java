@@ -33,6 +33,6 @@ public class WorkFactory {
 //        Factory job = new Factory(jobCount);
 //        return job;
 
-        return new Factory(jobCount);
+        return new FactoryItem(jobCount);
     }
 }
