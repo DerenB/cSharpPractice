@@ -1,0 +1,18 @@
+/*
+ * DEREN BOZER
+ * COSC-525 WIN22
+ * MW 1:00P
+ */
+
+GANNT CHART:
+BurstStart		BurstEnd		JOB
+         0	           2		IDLE
+         3	         241		1
+       241	         303		IDLE
+       303	         652		2
+       653	         997		3
+       998	        1341		4
+      1341	        1341		FINISHED
+
+
+Process finished with exit code 0
