@@ -6,6 +6,7 @@
 
 package scheduler;
 
+import java.util.LinkedList;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
@@ -110,8 +111,8 @@ class SystemSimulator extends Thread {
      * Keep in mind that j might not start running immediately, depending on whether another job is already running.
      */
 
-    public void AddNewProcess(String name, String burstDescription, JobWorkable workToDo) {
-        Job newJob = new Job(burstDescription, this, name, workToDo);
+    public void AddNewProcess(String name, LinkedList<Integer> cpuBursts, JobWorkable workToDo) {
+        Job newJob = new Job(cpuBursts, this, name, workToDo);
         myScheduler.add(newJob);
     }
 

@@ -7,6 +7,7 @@
 package scheduler;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.StringTokenizer;
 
 /**
@@ -59,7 +60,11 @@ class Submittor extends Thread {
         for (String jobDesc : myJobDescs) {
             String id; // ID/name of the Job (simulated process)
             int delay; // msec delay until this Job is submitted to the kernel
-            String burstDescription;  // The description of that Job.  (For FCFS this will be a single integer token)
+
+            // Prior Assignment
+            // String burstDescription;  // The description of that Job.  (For FCFS this will be a single integer token)
+
+            LinkedList<Integer> cpuBursts = new LinkedList<Integer>();
 
             //System.out.println("TO_DO Complete Submittor.run()");
             /*
@@ -69,7 +74,12 @@ class Submittor extends Thread {
             String[] jobArray = jobDesc.split(" ");
             id = jobArray[0];
             delay = Integer.parseInt(jobArray[1]);
-            burstDescription = jobArray[2];
+            cpuBursts.add(Integer.parseInt(jobArray[2]));
+            cpuBursts.add(Integer.parseInt(jobArray[3]));
+            cpuBursts.add(Integer.parseInt(jobArray[4]));
+
+            // Prior Assignment
+            // burstDescription = jobArray[2];
 
 
             try {
@@ -79,7 +89,7 @@ class Submittor extends Thread {
                 e.printStackTrace();
             }
             // create jobs and add them to the Operating System
-            mySystem.AddNewProcess(id, burstDescription, myWorkCreator.createWork());
+            mySystem.AddNewProcess(id, cpuBursts, myWorkCreator.createWork());
         }
         mySystem.noMoreJobsToSubmit(); // let system know that no more jobs are coming
     }

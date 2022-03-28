@@ -84,4 +84,10 @@ public abstract class Scheduler {
      * thread.
      */
     public abstract void blockTilThereIsAJob();
+
+    public abstract void startIO();
+
+    public abstract void finishIO(Job j);
+
+    public abstract boolean hasReadyJobs();
 }

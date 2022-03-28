@@ -103,6 +103,21 @@ public class FCFSScheduler extends Scheduler {
     public boolean hasJobsQueued() {
         return !list.isEmpty();
     }
+
+    @Override
+    public void startIO() {
+
+    }
+
+    @Override
+    public void finishIO(Job j) {
+
+    }
+
+    @Override
+    public boolean hasReadyJobs() {
+
+    }
 }
   
 

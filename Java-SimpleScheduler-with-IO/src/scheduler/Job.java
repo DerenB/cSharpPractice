@@ -6,6 +6,7 @@
 
 package scheduler;
 
+import java.util.LinkedList;
 import java.util.concurrent.locks.Condition;
 
 /**
@@ -29,7 +30,8 @@ class Job extends Thread {
     // When we introduce time-slicing, the Job can be use this to suspend
     // itself, passing control back to the OS simulator.
 
-    private final int burstTime; // job burst time
+    // private final int burstTime; // job burst time
+    private final LinkedList<Integer> burstTimes;
     private final String name; // name of job
 
     private volatile boolean shouldRun = false; // true if job should be running
@@ -42,14 +44,19 @@ class Job extends Thread {
      * the CPU burst duration.  In a later version of this program we'll augment
      * the descriptors to allow for a sequence of CPU and IO burst lengths.
      */
-    public Job(String burstDescriptor, SystemSimulator s, String name, JobWorkable workToDo) {
+    public Job(LinkedList<Integer> cpuBursts, SystemSimulator s, String name, JobWorkable workToDo) {
         // Initialize stuff
         myOS = s;
         myCondition = s.getSingleThreadMutex().newCondition();
 
-        burstTime = Integer.parseInt(burstDescriptor);
-        work = workToDo;
+        // Adding the burst times to the linked list
+        burstTimes = new LinkedList<>();
+        burstTimes.addAll(cpuBursts);
 
+        // Prior Assignment
+        //burstTime = Integer.parseInt(burstDescriptor);
+
+        work = workToDo;
         this.name = name;
     }
 
@@ -63,8 +70,15 @@ class Job extends Thread {
     /*
      * An accessor, returning the CPU burst time of the job.
      */
+    // Prior Assignment
+    /*
     protected int getBurstTime() {
         return (burstTime);
+    }
+     */
+
+    protected LinkedList<Integer> getCPUTimes() {
+        return burstTimes;
     }
 
     public Condition getMyCondition() {
@@ -116,6 +130,7 @@ class Job extends Thread {
 
         exit();  //exit needs to signal the Condition, and release the lock
     }
+
 
     /*
      * should be last instruction in run(). Exit should eventually invoke myOS.exit();
