@@ -21,10 +21,11 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 public class FCFSScheduler extends Scheduler {
 
     ConcurrentLinkedQueue<Job> list;
-    ConcurrentLinkedQueue<Job> blockedJobs;
+    ConcurrentLinkedQueue<Job> inputQueue;
 
     public FCFSScheduler() {
         list = new ConcurrentLinkedQueue<>();
+        inputQueue = new ConcurrentLinkedQueue<>();
     }
 
     /**
