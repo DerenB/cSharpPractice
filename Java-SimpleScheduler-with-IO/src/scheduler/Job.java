@@ -39,6 +39,8 @@ class Job extends Thread {
     // You'll need to use this with Gannt chart calculations
     private final JobWorkable work;  // What you want your Job to do as its "work".
 
+    SystemSimulator systemSimulator;
+
     /*
      * The burstDescription consists of a single integer, y, which is the
      * the CPU burst duration.  In a later version of this program we'll augment
@@ -48,6 +50,7 @@ class Job extends Thread {
         // Initialize stuff
         myOS = s;
         myCondition = s.getSingleThreadMutex().newCondition();
+        systemSimulator = new SystemSimulator();
 
         // Adding the burst times to the linked list
         burstTimes = new LinkedList<>();
