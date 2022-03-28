@@ -113,7 +113,9 @@ class Job extends Thread {
      * Can do pretty much anything but must return after the CPU burst time has elapsed.
      * (Note that the Job's run-clock should not start "ticking" until run() is invoked!
      */
-    public void run() {
+
+    /* Previous Assignment
+    public void oldrun() {
         //Should block here until the OS blocks itself on this Job's Condition
         myOS.getSingleThreadMutex().lock();
 
@@ -127,10 +129,39 @@ class Job extends Thread {
                 e.printStackTrace();
             }
         }
-
         exit();  //exit needs to signal the Condition, and release the lock
     }
+     */
 
+    public void run() {
+        //Should block here until the OS blocks itself on this Job's Condition
+        myOS.getSingleThreadMutex().lock();
+
+        doCPU();
+        while(!burstTimes.isEmpty()) {  // While there remains an IO/CPU pair
+            doIO();
+            doCPU();
+        }
+
+        exit();  //exit needs to signal the condition, and release the lock
+    }
+
+    public void doCPU() {
+        startTime = System.currentTimeMillis();
+        while (System.currentTimeMillis() - startTime < burstTime) {// Not yet exhausted my run-time
+            work.doWork(); // This should return in only a few milliseconds
+            try {
+                sleep(10);
+            } catch (InterruptedException e) {
+                System.out.println("" + name + " is interrupted, hopefully only by TimeSlicer");
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void doIO() {
+
+    }
 
     /*
      * should be last instruction in run(). Exit should eventually invoke myOS.exit();

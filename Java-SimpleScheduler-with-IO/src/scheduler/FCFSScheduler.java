@@ -19,11 +19,9 @@ package scheduler;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class FCFSScheduler extends Scheduler {
-    /*
-     * TO_DO: your data structure to support a FCFS scheduler
-     * and the abstract methods of Scheduler
-     */
+
     ConcurrentLinkedQueue<Job> list;
+    ConcurrentLinkedQueue<Job> blockedJobs;
 
     public FCFSScheduler() {
         list = new ConcurrentLinkedQueue<>();
@@ -37,20 +35,13 @@ public class FCFSScheduler extends Scheduler {
      * invoke Thread.start() on it.
      */
     public boolean makeRun() {
-        //System.out.println("TO_DO: makeRun not yet implemented");
-        /*
-         * Place code here that gets the next Job from the ready queue and
-         * invokes start() on it
-         *
-         */
 
         if(list.isEmpty()) {
             return false;
         } else {
             currentlyRunningJob = list.poll();
             currentlyRunningJob.start();
-
-            return true; // TO_DO *** SHOULDN'T ALWAYS RETURN TRUE ***
+            return true;
         }
     }
 
@@ -60,15 +51,12 @@ public class FCFSScheduler extends Scheduler {
      */
     public void blockTilThereIsAJob() {
         if (hasRunningJob()) {
-            //System.out.println("Has running job flag");
             return;
         }
         if (hasJobsQueued()) {
-            //System.out.println("Has job queued flag");
             return;
         }
 
-        //System.out.println("TO_DO: blockTilThereIsAJob not yet implemented");
         /*
          * Place code here that will cause the calling thread to block until the ready queue
          * contains a Job
@@ -81,8 +69,6 @@ public class FCFSScheduler extends Scheduler {
                 e.printStackTrace();
             }
         }
-
-
         System.out.println("evidently there is now a job on readyQ");
     }
 

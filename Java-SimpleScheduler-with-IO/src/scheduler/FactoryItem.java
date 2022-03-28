@@ -5,13 +5,11 @@ public class FactoryItem implements JobWorkable {
 
     public FactoryItem(int inValue) {
         job = inValue;
-        //System.out.println("Factory class did value: " + job);
     }
 
     @Override
     public void doWork() {
         String jobThread = Thread.currentThread().getName();
-
 
         String status = "Job " + job + " did some work on thread " + jobThread + ".";
         System.out.println(status);

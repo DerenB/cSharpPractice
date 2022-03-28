@@ -83,13 +83,7 @@ class SystemSimulator extends Thread {
 
 
             myScheduler.makeRun();  // the next Job should start running but should immediately block itself on OS mutex lock
-            //System.out.println("TO_DO Finish SystemSimulator.run()");
-            /* Provide code that so that the kernel simulator thread
-             * (i.e., the thread that is executing this code) uses the currently running Job's
-             * Condition variable to block itself.  Use the await() method to do this.
-             * This will establish the mutex for the kernel and the current Job.
-             */
-            //YOUR CODE HERE
+
             try {
                 myScheduler.getRunningJob().getMyCondition().await();
             } catch (InterruptedException e) {

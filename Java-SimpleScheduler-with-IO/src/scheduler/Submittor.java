@@ -61,26 +61,14 @@ class Submittor extends Thread {
             String id; // ID/name of the Job (simulated process)
             int delay; // msec delay until this Job is submitted to the kernel
 
-            // Prior Assignment
-            // String burstDescription;  // The description of that Job.  (For FCFS this will be a single integer token)
-
             LinkedList<Integer> cpuBursts = new LinkedList<Integer>();
 
-            //System.out.println("TO_DO Complete Submittor.run()");
-            /*
-             * Provide code that will set id, delay, and burstDescription from jobDesc.
-             *
-             */
             String[] jobArray = jobDesc.split(" ");
             id = jobArray[0];
             delay = Integer.parseInt(jobArray[1]);
             cpuBursts.add(Integer.parseInt(jobArray[2]));
             cpuBursts.add(Integer.parseInt(jobArray[3]));
             cpuBursts.add(Integer.parseInt(jobArray[4]));
-
-            // Prior Assignment
-            // burstDescription = jobArray[2];
-
 
             try {
                 sleep(delay); // wait until submission
