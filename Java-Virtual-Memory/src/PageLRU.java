@@ -19,6 +19,8 @@ public class PageLRU {
         numberOfFrames = frame;
         frameArray = new ArrayList<>();
         oldestAccess = new ArrayList<>();
+
+        // Adds starting values
         for(int i = 0; i < frame; i++) {
             frameArray.add(0);
             oldestAccess.add(0);
@@ -27,6 +29,7 @@ public class PageLRU {
         // OUTPUT
         print(input);
 
+        // Position next position
         int positionIncrement = 0;
 
         for(int i = 1; i < input.size(); i++) {
@@ -34,33 +37,42 @@ public class PageLRU {
             System.out.print(num + " : ");
 
             if(frameArray.contains(num)) {
+                // Checks if num already in memory
                 for(int k = 0; k < frame; k++) {
                     int frameArrayValue = frameArray.get(k);
                     int oldestAccessValue = oldestAccess.get(k);
 
                     if(frameArrayValue == num) {
+                        // Resets access timer to 0 if num matches
                         oldestAccess.set(k,0);
                     } else {
+                        // Increments access time if num does not match
                         oldestAccess.set(k,oldestAccessValue+1);
                     }
                 }
 
             } else {
+                // Num not in memory
                 Pager.faultLRU++;
 
+                // Setting new value for access timer
                 for(int k = 0; k < frame; k++) {
                     if(frameArray.get(k) == num) {
+                        // Resets timer to 0 if num value matches
                         oldestAccess.set(k,0);
                     } else {
+                        // Increments access timer if num does not match
                         int temp = oldestAccess.get(k);
                         oldestAccess.set(k,temp+1);
                     }
                 }
 
+                // Adds to empty position when memory empty
                 if(positionIncrement<frame) {
                     frameArray.set(positionIncrement,num);
                     positionIncrement++;
                 } else {
+                    // Uses max value to set num to the oldest access
                     frameArray.set(MaxPosition(oldestAccess),num);
                     oldestAccess.set(MaxPosition(oldestAccess),0);
                 }
@@ -71,12 +83,14 @@ public class PageLRU {
         }
     }
 
+    // Returns the maximum value of the list parameter
     private int MaxPosition(ArrayList<Integer> input) {
         int maxVal = Collections.max(input);
 
         return input.indexOf(maxVal);
     }
 
+    // Print Method
     private void print(ArrayList<Integer> input) {
         String listSummary = convertToString(input);
         System.out.println();
