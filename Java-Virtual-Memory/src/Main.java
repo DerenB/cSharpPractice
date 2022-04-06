@@ -32,7 +32,8 @@ public class Main {
             }
         }
 
-        Pager test = new Pager(inputList, numberOfSequences);
+        // Starts the Pager class
+        Pager startProgram = new Pager(inputList, numberOfSequences);
 
         //Closing statement
         System.out.println();

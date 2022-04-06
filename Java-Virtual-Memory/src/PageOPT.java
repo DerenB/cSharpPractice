@@ -88,6 +88,7 @@ public class PageOPT {
         System.out.println();
     }
 
+    // Converts the integer array list to a string
     static String convertToString(ArrayList<Integer> numbers) {
         StringBuilder builder = new StringBuilder();
 

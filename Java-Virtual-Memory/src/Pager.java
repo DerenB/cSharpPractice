@@ -8,13 +8,17 @@
 import java.util.ArrayList;
 
 public class Pager {
+    // Count of sequences
     public int sequenceCount;
+
+    // Count the number of faults
     public static int faultFIFO;
     public static int faultLRU;
     public static int faultLFU;
     public static int faultOPT;
 
     public Pager(ArrayList<Integer> input, int numberOfSequences) {
+        // Initialize
         sequenceCount = numberOfSequences;
 
         // Splits the into individual lists
@@ -30,24 +34,22 @@ public class Pager {
             sortedList.add(tempList);
         }
 
-        // First Set of Items
-        // PageFIFO setOne = new PageFIFO(sortedList.get(0),sortedList.get(0).get(0));
-        // System.out.println();
-
-        // Second Set of Items
-        // PageFIFO setTwo = new PageFIFO(sortedList.get(1),sortedList.get(1).get(0));
-
+        // Loop to go through every List in every type
         for(ArrayList<Integer> list : sortedList) {
+            // Sets the faults to 0
             faultFIFO = 0;
             faultLRU = 0;
             faultLFU = 0;
             faultOPT = 0;
+
+            // Sends the list to each page replacement class
             PageFIFO setFIFO = new PageFIFO(list, list.get(0));
             PageLRU setLRU = new PageLRU(list, list.get(0));
             PageLFU setLFU = new PageLFU(list,list.get(0));
             PageOPT setOPT = new PageOPT(list,list.get(0));
             System.out.println();
 
+            // Outputs the results
             System.out.println("Using " + list.get(0) + " frames, the reference string yielded:");
             System.out.printf("%5s\t%5s\t%5s\n","Scheme","#Faults","%Optimal");
             System.out.printf("%s\t%d\t\t%.1f%s\n","FIFO",faultFIFO, Percentage(faultFIFO),"%");
@@ -58,6 +60,7 @@ public class Pager {
         }
     }
 
+    // Returns a double as a percentage
     public double Percentage(double num) {
         return (num / faultOPT) * 100;
     }
