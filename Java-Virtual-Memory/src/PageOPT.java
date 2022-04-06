@@ -44,7 +44,7 @@ public class PageOPT {
                 } else {
                     for(int k = 0; k < frameArray.size(); k++) {
                         int temp = frameArray.get(k);
-                        int distance = FindDistanceToNextOccurance(temp,i,input);
+                        int distance = FindDistanceToNextOccurrence(temp,i,input);
                         nextUse.set(k,distance);
                     }
 
@@ -59,16 +59,16 @@ public class PageOPT {
         }
     }
 
-    private int FindDistanceToNextOccurance(int checkVal, int startPosition, ArrayList<Integer> list) {
-        int distanceToNextOccurance = 0;
+    private int FindDistanceToNextOccurrence(int checkVal, int startPosition, ArrayList<Integer> list) {
+        int distanceToNextOccurrence = 0;
         for(int i = startPosition; i < list.size(); i++) {
             if(list.get(i) == checkVal) {
                 break;
             } else {
-                distanceToNextOccurance++;
+                distanceToNextOccurrence++;
             }
         }
-        return distanceToNextOccurance;
+        return distanceToNextOccurrence;
     }
 
     private int MaxPosition(ArrayList<Integer> input) {
