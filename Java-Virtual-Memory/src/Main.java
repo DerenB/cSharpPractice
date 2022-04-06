@@ -1,3 +1,10 @@
+/*
+ * DEREN BOZER
+ * COSC-525
+ * MW 1:00PM-2:50PM
+ * PROJECT 4: VIRTUAL MEMORY
+ */
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
