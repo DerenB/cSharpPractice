@@ -13,18 +13,23 @@ public class Main {
     public static void main(String[] args) {
         // Initializes list
         inputList = new ArrayList<Integer>();
+        int numberOfSequences = 0;
 
         // Calls method to read file into arraylist
         getFileData();
 
-        System.out.println("List Start");
+        // Counts the number of sequences
         for(Integer item : inputList) {
             if(item == -1) {
-                System.out.println("End of section");
-            } else {
-                System.out.println(item);
+                numberOfSequences++;
             }
         }
+
+        Pager test = new Pager(inputList, numberOfSequences);
+
+        //Closing statement
+        System.out.println();
+        System.out.println("Program done, closing.");
     }
 
     // Method to read file into array list
