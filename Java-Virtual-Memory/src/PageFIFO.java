@@ -9,9 +9,9 @@ public class PageFIFO {
     public PageFIFO(ArrayList<Integer> input, int frame) {
         numberOfFrames = frame;
         frameArray = new ArrayList<>();
-        frameArray.add(0);
-        frameArray.add(0);
-        frameArray.add(0);
+        for(int i = 0; i < frame; i++) {
+            frameArray.add(0);
+        }
 
         // OUTPUT
         print(input);
@@ -26,7 +26,7 @@ public class PageFIFO {
                 Pager.faultFIFO++;
                 frameArray.set(positionIncrement,num);
                 System.out.print(frameArray);
-                if(positionIncrement == 2) {
+                if(positionIncrement == frame-1) {
                     positionIncrement = 0;
                 } else {
                     positionIncrement++;
