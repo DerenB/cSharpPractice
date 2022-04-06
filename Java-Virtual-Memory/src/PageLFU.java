@@ -13,15 +13,16 @@ public class PageLFU {
 
     public int numberOfFrames;
     private ArrayList<Integer> frameArray;
-    private ArrayList<Integer> oldestAccess;
+    private ArrayList<Integer> pageLoadFrequency;
+
 
     public PageLFU(ArrayList<Integer> input, int frame) {
         numberOfFrames = frame;
         frameArray = new ArrayList<>();
-        oldestAccess = new ArrayList<>();
+        pageLoadFrequency = new ArrayList<>();
         for(int i = 0; i < frame; i++) {
             frameArray.add(0);
-            oldestAccess.add(0);
+            pageLoadFrequency.add(0);
         }
 
         // OUTPUT
@@ -36,34 +37,25 @@ public class PageLFU {
             if(frameArray.contains(num)) {
                 for(int k = 0; k < frame; k++) {
                     int frameArrayValue = frameArray.get(k);
-                    int oldestAccessValue = oldestAccess.get(k);
+                    int pageLoadValue = pageLoadFrequency.get(k);
 
                     if(frameArrayValue == num) {
-                        oldestAccess.set(k,0);
+                        pageLoadFrequency.set(k,0);
                     } else {
-                        oldestAccess.set(k,oldestAccessValue+1);
+                        pageLoadFrequency.set(k,pageLoadValue+1);
                     }
                 }
-
             } else {
-                Pager.faultLRU++;
-
-                for(int k = 0; k < frame; k++) {
-                    if(frameArray.get(k) == num) {
-                        oldestAccess.set(k,0);
-                    } else {
-                        int temp = oldestAccess.get(k);
-                        oldestAccess.set(k,temp+1);
-                    }
-                }
+                Pager.faultLFU++;
 
                 if(positionIncrement<frame) {
                     frameArray.set(positionIncrement,num);
                     positionIncrement++;
                 } else {
-                    frameArray.set(MaxPosition(oldestAccess),num);
-                    oldestAccess.set(MaxPosition(oldestAccess),0);
+                    frameArray.set(MaxPosition(pageLoadFrequency),num);
+                    pageLoadFrequency.set(MaxPosition(pageLoadFrequency),0);
                 }
+
                 System.out.print(frameArray);
             }
             //System.out.println(oldestAccess);
@@ -80,7 +72,7 @@ public class PageLFU {
     private void print(ArrayList<Integer> input) {
         String listSummary = convertToString(input);
         System.out.println();
-        System.out.println("LRU:");
+        System.out.println("LFU:");
         System.out.println(listSummary);
         for(int i = 0; i < listSummary.length(); i++) {
             System.out.print("_");

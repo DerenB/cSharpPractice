@@ -44,6 +44,7 @@ public class Pager {
             faultOPT = 0;
             PageFIFO setFIFO = new PageFIFO(list, list.get(0));
             PageLRU setLRU = new PageLRU(list, list.get(0));
+            PageLFU setLFU = new PageLFU(list,list.get(0));
             PageOPT setOPT = new PageOPT(list,list.get(0));
             System.out.println();
 
@@ -51,6 +52,7 @@ public class Pager {
             System.out.printf("%5s\t%5s\t%5s\n","Scheme","#Faults","%Optimal");
             System.out.printf("%s\t%d\t\t%.1f%s\n","FIFO",faultFIFO, Percentage(faultFIFO),"%");
             System.out.printf("%s\t\t%d\t\t%.1f%s\n","LRU",faultLRU, Percentage(faultLRU),"%");
+            System.out.printf("%s\t\t%d\t\t%.1f%s\n","LFU",faultLFU, Percentage(faultLFU),"%");
             System.out.printf("%s\t%d\t\t%.1f%s\n","Optimal",faultOPT, Percentage(faultOPT),"%");
             System.out.println();
         }

@@ -18,7 +18,7 @@ public class Main {
     public static ArrayList<Integer> inputList;
 
     public static void main(String[] args) {
-        // Initializes list
+        // Initializes variables
         inputList = new ArrayList<Integer>();
         int numberOfSequences = 0;
 
