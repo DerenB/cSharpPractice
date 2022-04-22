@@ -14,5 +14,7 @@ public class SSTF {
 
     public SSTF(int trackNum, ArrayList<Integer> timeList, ArrayList<Integer> trackNumRequest) {
         numberOfTracks = trackNum;
+
+        System.out.println("=======SSTF SCHEDULER=========================");
     }
 }
