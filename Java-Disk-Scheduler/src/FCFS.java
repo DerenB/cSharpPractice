@@ -11,11 +11,19 @@ public class FCFS {
     // F.C.F.S. - First Come First Serve
 
     private static int numberOfTracks;
-    public static ArrayList<Integer> pendingRequests;
+    private static ArrayList<Integer> timeList;
+    private static ArrayList<Integer> trackNumRequest;
 
-    public FCFS(int trackNum, ArrayList<Integer> timeList, ArrayList<Integer> trackNumRequest) {
+    private static ArrayList<Integer> pendingRequests;
+
+    public FCFS(int trackNum, ArrayList<Integer> inputTimeList, ArrayList<Integer> inputTrackNumRequest) {
         numberOfTracks = trackNum;
         pendingRequests = new ArrayList<Integer>();
+        timeList = new ArrayList<Integer>();
+        trackNumRequest = new ArrayList<Integer>();
+
+        timeList.addAll(inputTimeList);
+        trackNumRequest.addAll(inputTrackNumRequest);
 
         int time = 0;
         // int outputTime = 0;
@@ -25,8 +33,6 @@ public class FCFS {
         int timeListIteration = 1;
 
         System.out.println("=======FCFS SCHEDULER=========================");
-        System.out.println(trackNumRequest.size());
-        System.out.println(pendingRequests.size());
 
         while(trackNumRequest.size() > 0 || pendingRequests.size() > 0) {
             if(pendingRequests.size() == 0) {

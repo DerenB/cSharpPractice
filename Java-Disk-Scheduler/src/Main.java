@@ -51,6 +51,9 @@ public class Main {
         FCFS fcfsAlgo = new FCFS(numberOfTracks,timeList,trackNumRequest);
         System.out.println();
         SSTF sstfAlgo = new SSTF(numberOfTracks,timeList,trackNumRequest);
+        System.out.println();
+        LOOK lookAlgo = new LOOK(numberOfTracks, timeList, trackNumRequest);
+        System.out.println();
 
         //Closing statement
         System.out.println();
