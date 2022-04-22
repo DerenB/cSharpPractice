@@ -18,12 +18,11 @@ public class FCFS {
         pendingRequests = new ArrayList<Integer>();
 
         int time = 0;
-        int projectedNextTime;
+        // int outputTime = 0;
         int head = 0;
         int projectedNextHead;
         boolean headGoingUp = true;
         int timeListIteration = 1;
-        int requestListIteration = 0;
 
         System.out.println("=======FCFS SCHEDULER=========================");
         System.out.println(trackNumRequest.size());
@@ -34,7 +33,6 @@ public class FCFS {
                 int addVal = trackNumRequest.get(0);
                 pendingRequests.add(trackNumRequest.get(0));
                 trackNumRequest.remove(0);
-                requestListIteration++;
                 System.out.println("[Time=" + time + "] Adding request " + addVal);
                 System.out.println("\t" + "Head @ " + head + ". Current target = " + addVal + " . Pending requests are now [" + convertToString(pendingRequests) + "]");
             } else {
@@ -54,7 +52,11 @@ public class FCFS {
                     } else {
                         if(projectedNextHead >= currentTarget) {
                             pendingRequests.remove(0);
-                            System.out.println("[Time=" + time + "] >>>>SERVICING track " + currentTarget);
+                            if(timeListIteration < timeList.size()) {
+                                System.out.println("[Time=" + currentTarget + "] >>>>SERVICING track " + currentTarget);
+                            } else {
+                                System.out.println("[Time=" + time + "] >>>>SERVICING track " + currentTarget);
+                            }
                             String outputList;
                             if(pendingRequests.size() == 0) {
                                 outputList = " ";
@@ -68,6 +70,7 @@ public class FCFS {
                             trackNumRequest.remove(0);
                             if(timeListIteration < timeList.size()) {
                                 head += timeList.get(timeListIteration);
+                                time += timeList.get(timeListIteration);
                             } else {
                                 head = currentTarget;
                             }
@@ -78,7 +81,6 @@ public class FCFS {
                     }
                 } else if(!headGoingUp) {
                     distanceToNextRequest = head - currentTarget; // 146 = 183 - 37
-
                     if(timeListIteration < timeList.size()) {
                         projectedNextHead = head - timeList.get(timeListIteration); // 168 = 183 - 15
                     } else {
@@ -91,6 +93,8 @@ public class FCFS {
                     }
                     if(projectedNextHead <= currentTarget) {
                         pendingRequests.remove(0);
+
+                        time += (head - currentTarget);
                         System.out.println("[Time=" + time + "] >>>>SERVICING track " + currentTarget);
                         String outputList;
                         if(pendingRequests.size() == 0) {
@@ -103,8 +107,10 @@ public class FCFS {
                         int requestBeingAdded = trackNumRequest.get(0);
                         pendingRequests.add(requestBeingAdded);
                         trackNumRequest.remove(0);
+                        time += (head - currentTarget);
                         if(timeListIteration < timeList.size()) {
                             head -= timeList.get(timeListIteration);
+                            time += timeList.get(timeListIteration);
                         } else {
                             head = currentTarget;
                         }
@@ -115,12 +121,9 @@ public class FCFS {
                 }
             }
         }
-
-
-        // trackNumRequest.size() != 0 && pendingRequests.size() != 0
+        System.out.println();
+        System.out.println("Total run-time was " + time);
     }
-
-
 
     // Converts the integer array list to a string
     static String convertToString(ArrayList<Integer> numbers) {

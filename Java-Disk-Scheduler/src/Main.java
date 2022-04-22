@@ -49,6 +49,7 @@ public class Main {
 
         // Calls the Algorithm Classes
         FCFS fcfsAlgo = new FCFS(numberOfTracks,timeList,trackNumRequest);
+        System.out.println();
         SSTF sstfAlgo = new SSTF(numberOfTracks,timeList,trackNumRequest);
 
         //Closing statement
