@@ -18,12 +18,41 @@ public class Main {
     // Input Array List
     public static ArrayList<Integer> inputList;
 
+    // Input Items Organized
+    public static int numberOfTracks;
+    public static ArrayList<Integer> timeList;
+    public static ArrayList<Integer> trackNumRequest;
+
     public static void main(String[] args) {
         // Initializes variables
         inputList = new ArrayList<Integer>();
+        timeList = new ArrayList<Integer>();
+        trackNumRequest = new ArrayList<Integer>();
 
         // Calls method to read file into arraylist
         getFileData();
+
+        // Sorts the input data
+        numberOfTracks = inputList.get(0);
+        if((inputList.size()-1) % 2 != 0) {
+            System.out.println("Input file format error.");
+            System.exit(1);
+        } else {
+            for(int i = 1; i < inputList.size(); i++) {
+                if(i % 2 == 0) {
+                    trackNumRequest.add(inputList.get(i));
+                } else {
+                    timeList.add(inputList.get(i));
+                }
+            }
+        }
+
+        // Calls the Algorithm Classes
+        SSTF sstfAlgo = new SSTF(numberOfTracks,timeList,trackNumRequest);
+
+        //Closing statement
+        System.out.println();
+        System.out.println("Program done, closing.");
     }
 
     public static void getFileData() {
