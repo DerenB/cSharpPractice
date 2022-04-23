@@ -23,41 +23,21 @@ public class Main {
     public static boolean fileReadSuccess;
 
     public static void main(String[] args) {
-        // Initializes Intput List
+        // Initializes Input List
         inputList = new ArrayList<String>();
 
         // Read input data method
         getFileData();
 
-        // Initializes variables
-        numberOfBlocks = Integer.parseInt(inputList.get(0));
-        numberOfHeadMoves = 0;
-        numberOfFilesNotAllocated = 0;
+        // Contiguous Class
+        Contiguous c = new Contiguous(inputList);
+        Indexed d = new Indexed(inputList);
 
-        // Start output method
-        StartOutput();
-
-        // End output method
-        EndOutput();
-    }
-
-    private static void StartOutput() {
-        System.out.println("--------------- START CONTIGUOUS SIMULATION ---------------");
-        System.out.println("totBlock = " + numberOfBlocks);
-    }
-
-    private static void EndOutput() {
-        System.out.println("========= Indexed Allocation Statistics =============");
-        System.out.println();
-        System.out.println("During this simulation,");
-        System.out.println("Total head moves = " + numberOfHeadMoves);
-        System.out.println("Total number of files that could not be allocated = " + numberOfFilesNotAllocated);
-        System.out.println();
-        System.out.println("----------------- END of Indexed SIMULATION ---------------");
-        System.out.println();
+        // Indexed Class
     }
 
     public static void getFileData() {
+        // Method for connecting to the input file and reading in the data
         Scanner fileIn = null;
         try {
             fileIn = new Scanner(new FileInputStream(INPUT_FILE_NAME));
