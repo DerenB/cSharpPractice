@@ -247,5 +247,9 @@ public class LOOK {
         builder.deleteCharAt(builder.length()-1);
         return builder.toString();
 
+        /*
+         * Code snippet source:
+         * https://www.dotnetperls.com/convert-arraylist-string-java
+         */
     }
 }
