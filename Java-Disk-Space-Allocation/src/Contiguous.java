@@ -1,3 +1,9 @@
+/*
+ * Deren Bozer
+ * COSC 525 MW 1:00pm
+ * Disk Space Allocation
+ */
+
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -9,7 +15,7 @@ public class Contiguous {
     private static int numberOfBlocks;
     private static int numberOfHeadMoves;
     private static int numberOfFilesNotAllocated;
-    private static ArrayList<String> dataDisk;
+    private static ArrayList<Integer> dataDisk;
     private static int availableDiskSpace;
     private static int currentHeadLocation;
     private static int taskID;
@@ -27,12 +33,12 @@ public class Contiguous {
         taskID = 0;
 
         // Initialize the "Disk"
-        dataDisk = new ArrayList<String>();
+        dataDisk = new ArrayList<Integer>();
         availableDiskSpace = numberOfBlocks;
         currentHeadLocation = 0;
         itemsInDirectory = 0;
         for(int i = 0; i < numberOfBlocks; i++) {
-            dataDisk.add("*");
+            dataDisk.add(-1);
         }
 
         // Directory List
@@ -104,12 +110,14 @@ public class Contiguous {
             int diskMoveCount = numberOfBlocks;
             int availableSpace = 0;
             while(diskMoveCount > 0) {
-                if(dataDisk.get(searchStart).equals("*")) {
+                if(dataDisk.get(searchStart) == -1) {
                     availableSpace++;
                     if(availableSpace == filesize) {
                         addedToDisk = true;
                         break;
                     }
+                } else {
+                    availableSpace = 0;
                 }
                 searchStart++;
                 diskMoveCount--;
@@ -127,7 +135,7 @@ public class Contiguous {
 
             // Replaces the asterisks in the directory with the task num
             for(int i = filesize; i > 0; i--) {
-                dataDisk.set(endIndex,String.valueOf(itemsInDirectory));
+                dataDisk.set(endIndex,itemsInDirectory);
                 endIndex--;
             }
             System.out.println("File " + fileName + " was added successfully");
@@ -168,47 +176,25 @@ public class Contiguous {
         int printIterate = 10;
         System.out.println("DETAILS:");
 
-        for(ArrayList<String> dirItem : directoryList) {
-            int startPrintIndex = Integer.parseInt(dirItem.get(dirItem.size()-2));
-            int startEndIndex = Integer.parseInt(dirItem.get(dirItem.size()-1));
-            while(startPrintIndex <= startEndIndex) {
-                if(printIterate == 1) {
-                    System.out.print(dirItem.get(0) + " " + "\n");
-                    printIterate--;
+        for(int item : dataDisk) {
+            if(printIterate == 1) {
+                if(item == -1) {
+                    System.out.print("*" + " " + "\n");
                 } else {
-                    System.out.print(dirItem.get(0) + " ");
-                    printIterate--;
+                    System.out.print(item + " " + "\n");
                 }
-                startPrintIndex++;
+                printIterate = 10;
+            } else {
+                if(item == -1) {
+                    System.out.print("*" + " ");
+                } else {
+                    System.out.print(item + " ");
+                }
+                printIterate--;
             }
         }
         System.out.println();
-
-        /*
-        for(String item : dataDisk) {
-            if(iterate == 1) {
-                System.out.print(item + " " + "\n");
-                iterate = 10;
-            } else {
-                System.out.print(item + " ");
-                iterate--;
-            }
-        }
-         */
-
     }
-
-    /*
-    private static void IterateHeadLocation() {
-        // Moves the header
-        if(currentHeadLocation == 29) {
-            currentHeadLocation = 0;
-            numberOfHeadMoves++;
-        } else {
-            currentHeadLocation++;
-        }
-    }
-     */
 
     private static void ReadDisk(String fileNameToRead) {
         // Method for reading the disk
@@ -240,9 +226,8 @@ public class Contiguous {
                 int stDelete = Integer.parseInt(dirItem.get(dirItem.size()-2));
                 int endDelete = Integer.parseInt(dirItem.get(dirItem.size()-1));
 
-                for(int i = stDelete; i <= endDelete; i++) {
-                    dataDisk.set(i,"*");
-                }
+                // Changes the items back to asterisks
+                AdjustAsterisks(stDelete,endDelete);
 
                 // Adjust Directory Numbering and Removes the directory item
                 int indexOfDeletion = directoryList.indexOf(dirItem);
@@ -259,6 +244,17 @@ public class Contiguous {
             System.out.println("File " + fileNameToDelete + " was deleted successfully");
         } else {
             System.out.println("File " + fileNameToDelete + " was not found or could not be read");
+        }
+    }
+
+    private static void AdjustAsterisks(int start, int end) {
+        for(int i = 0; i < numberOfBlocks; i++) {
+            int newVal = dataDisk.get(i)-1;
+            if(i >= start && i <= end && dataDisk.get(i) > 0) {
+                dataDisk.set(i,-1);
+            } else if(dataDisk.get(i) > 0) {
+                dataDisk.set(i,newVal);
+            }
         }
     }
 
