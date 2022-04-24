@@ -9,6 +9,11 @@ public class Contiguous {
     private static int numberOfBlocks;
     private static int numberOfHeadMoves;
     private static int numberOfFilesNotAllocated;
+    private static ArrayList<String> dataDisk;
+    private static int availableDiskSpace;
+    private static int currentHeadLocation;
+    private static int taskID;
+    private static int itemsInDirectory;
 
     public Contiguous(ArrayList<String> inList) {
         // Variables
@@ -17,6 +22,16 @@ public class Contiguous {
         numberOfBlocks = Integer.parseInt(taskList.get(0));
         numberOfHeadMoves = 0;
         numberOfFilesNotAllocated = 0;
+        taskID = 0;
+
+        // Initialize the "Disk"
+        dataDisk = new ArrayList<String>();
+        availableDiskSpace = numberOfBlocks;
+        currentHeadLocation = 0;
+        itemsInDirectory = 0;
+        for(int i = 0; i < numberOfBlocks; i++) {
+            dataDisk.add("*");
+        }
 
         // Initial simulation output
         StartOutput();
@@ -24,6 +39,7 @@ public class Contiguous {
         // Run the program
         for(int i = 1; i < taskList.size(); i++) {
             String commandString = taskList.get(i);
+            taskID++;
 
             // Get the File name
             String fileName = "";
@@ -54,19 +70,79 @@ public class Contiguous {
             int size = ParseInt(dataSize);
 
             // Execute line
-            ExecuteCommands(command.trim(),fileName.trim(),size);
+            ExecuteCommands(command.trim().toLowerCase(),fileName.trim(),size, taskID);
         }
 
         // End simulation output
         EndOutput();
     }
 
-    private static void ExecuteCommands(String task, String fileName, int fileSize) {
-        System.out.println("-----------------------------");
-        System.out.println("Task: " + task);
-        System.out.println("File Name: " + fileName);
-        System.out.println("File Size: " + fileSize);
+    private static void ExecuteCommands(String task, String fileName, int fileSize, int taskNum) {
+        if(task.equals("add")) {
+            AddToDisk(fileName, fileSize, taskNum);
+        } else if(task.equals("print")) {
+            PrintDataContents();
+        }
+    }
+
+    private static void AddToDisk(String fileName, int filesize, int taskNum) {
+        boolean addedToDisk = false;
+        if(filesize > availableDiskSpace) {
+            numberOfFilesNotAllocated++;
+        } else {
+            int diskMoveCount = numberOfBlocks;
+            int availableSpace = 0;
+            while(diskMoveCount > 0) {
+                if(dataDisk.get(currentHeadLocation).equals("*")) {
+                    availableSpace++;
+                    if(availableSpace == filesize) {
+                        addedToDisk = true;
+                        break;
+                    }
+                }
+                IterateHeadLocation();
+                diskMoveCount--;
+            }
+        }
+
+        if(addedToDisk) {
+            int endIndex = currentHeadLocation;
+            for(int i = filesize; i > 0; i--) {
+                dataDisk.set(endIndex,"b");
+                endIndex--;
+            }
+            System.out.println("File " + fileName + " was added successfully");
+            itemsInDirectory++;
+        } else {
+            System.out.println("File " + fileName + " could not be added.");
+        }
         System.out.println();
+    }
+
+    private static void PrintDataContents() {
+        int listNums = itemsInDirectory;
+        int iterate = 10;
+        System.out.println("============== Current Drive Contents =================");
+        System.out.println();
+        System.out.println("DETAILS:");
+        for(String item : dataDisk) {
+            if(iterate == 1) {
+                System.out.print(item + " " + "\n");
+                iterate = 10;
+            } else {
+                System.out.print(item + " ");
+                iterate--;
+            }
+        }
+    }
+
+    private static void IterateHeadLocation() {
+        if(currentHeadLocation == 29) {
+            currentHeadLocation = 0;
+            numberOfHeadMoves++;
+        } else {
+            currentHeadLocation++;
+        }
     }
 
     private static void StartOutput() {

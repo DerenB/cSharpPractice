@@ -33,6 +33,7 @@ public class Main {
         // Indexed Class
         // Indexed d = new Indexed(inputList);
 
+        /*
         for(String item : inputList) {
             System.out.println(item);
 
@@ -65,6 +66,7 @@ public class Main {
             //System.out.println("Int Size:" + size);
             //System.out.println();
         }
+         */
     }
 
     public static Integer ParseInt(String input) {
