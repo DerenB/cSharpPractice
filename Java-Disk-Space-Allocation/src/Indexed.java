@@ -9,6 +9,7 @@ public class Indexed {
     private static int numberOfFilesNotAllocated;
 
     public Indexed(ArrayList<String> inList) {
+        // Variables
         inputList = new ArrayList<String>();
         inputList.addAll(inList);
         numberOfBlocks = Integer.parseInt(inputList.get(0));
@@ -26,9 +27,11 @@ public class Indexed {
         // Method for the start of the program output
         System.out.println("--------------- START INDEXED SIMULATION ---------------");
         System.out.println("totBlock = " + numberOfBlocks);
+
     }
 
     private static void EndOutput() {
+        System.out.println();
         System.out.println("========= Indexed Allocation Statistics =============");
         System.out.println();
         System.out.println("During this simulation,");
