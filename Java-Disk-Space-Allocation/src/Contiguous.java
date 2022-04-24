@@ -84,16 +84,19 @@ public class Contiguous {
 
     private static void ExecuteCommands(String task, String fileName, int fileSize, int taskNum) {
         if(task.equals("add")) {
-            AddToDisk(fileName, fileSize, taskNum);
+            AddToDisk(fileName, fileSize);
         } else if(task.equals("print")) {
             PrintDataContents();
         } else if(task.equals("read")) {
             ReadDisk(fileName);
+        } else if(task.equals("del")) {
+            DeleteDirItem(fileName);
         }
     }
 
-    private static void AddToDisk(String fileName, int filesize, int taskNum) {
+    private static void AddToDisk(String fileName, int filesize) {
         boolean addedToDisk = false;
+        int searchStart = 0;
         if(filesize > availableDiskSpace) {
             // Checks if there is space on the disk
             numberOfFilesNotAllocated++;
@@ -101,30 +104,30 @@ public class Contiguous {
             int diskMoveCount = numberOfBlocks;
             int availableSpace = 0;
             while(diskMoveCount > 0) {
-                if(dataDisk.get(currentHeadLocation).equals("*")) {
+                if(dataDisk.get(searchStart).equals("*")) {
                     availableSpace++;
                     if(availableSpace == filesize) {
                         addedToDisk = true;
                         break;
                     }
                 }
-                IterateHeadLocation();
+                searchStart++;
                 diskMoveCount--;
             }
         }
 
         if(addedToDisk) {
             // Gets the current head location
-            int endIndex = currentHeadLocation;
+            int endIndex = searchStart;
             int startIndex = endIndex - (filesize-1);
 
             // Adds the item to the directory
             itemsInDirectory++;
-            AddItemToDirectory(itemsInDirectory, fileName, taskNum, startIndex, endIndex);
+            AddItemToDirectory(itemsInDirectory, fileName, startIndex, endIndex);
 
             // Replaces the asterisks in the directory with the task num
             for(int i = filesize; i > 0; i--) {
-                dataDisk.set(endIndex,String.valueOf(taskNum));
+                dataDisk.set(endIndex,String.valueOf(itemsInDirectory));
                 endIndex--;
             }
             System.out.println("File " + fileName + " was added successfully");
@@ -133,16 +136,18 @@ public class Contiguous {
         }
     }
 
-    private static void AddItemToDirectory(int directNum, String fileNa, int dirNum, int stIndex, int enIndex) {
+    private static void AddItemToDirectory(int itemNum, String fileNa, int stIndex, int enIndex) {
         // Adds an item list to the directory list
         ArrayList<String> newDirectoryItem = new ArrayList<>();
-        newDirectoryItem.add(dirNum + ".");
+        newDirectoryItem.add(String.valueOf(itemNum));
         newDirectoryItem.add(fileNa);
         newDirectoryItem.add(",");
         newDirectoryItem.add("Blocks");
         for(int i = stIndex; i <= enIndex; i++) {
             newDirectoryItem.add(String.valueOf(i));
         }
+        newDirectoryItem.add(String.valueOf(stIndex));
+        newDirectoryItem.add(String.valueOf(enIndex));
         directoryList.add(newDirectoryItem);
     }
 
@@ -160,8 +165,26 @@ public class Contiguous {
         System.out.println();
 
         // Detail Items
-        int iterate = 10;
+        int printIterate = 10;
         System.out.println("DETAILS:");
+
+        for(ArrayList<String> dirItem : directoryList) {
+            int startPrintIndex = Integer.parseInt(dirItem.get(dirItem.size()-2));
+            int startEndIndex = Integer.parseInt(dirItem.get(dirItem.size()-1));
+            while(startPrintIndex <= startEndIndex) {
+                if(printIterate == 1) {
+                    System.out.print(dirItem.get(0) + " " + "\n");
+                    printIterate--;
+                } else {
+                    System.out.print(dirItem.get(0) + " ");
+                    printIterate--;
+                }
+                startPrintIndex++;
+            }
+        }
+        System.out.println();
+
+        /*
         for(String item : dataDisk) {
             if(iterate == 1) {
                 System.out.print(item + " " + "\n");
@@ -171,9 +194,11 @@ public class Contiguous {
                 iterate--;
             }
         }
-        System.out.println();
+         */
+
     }
 
+    /*
     private static void IterateHeadLocation() {
         // Moves the header
         if(currentHeadLocation == 29) {
@@ -183,6 +208,7 @@ public class Contiguous {
             currentHeadLocation++;
         }
     }
+     */
 
     private static void ReadDisk(String fileNameToRead) {
         // Method for reading the disk
@@ -199,6 +225,50 @@ public class Contiguous {
             System.out.println("File " + fileNameToRead + " was read successfully with 1 head move(s).");
         } else {
             System.out.println("File " + fileNameToRead + " was not found or could not be read");
+        }
+    }
+
+    private static void DeleteDirItem(String fileNameToDelete) {
+        // Method for deleting an item from the disk and the directory
+        boolean itemRead = false;
+        ArrayList<String> listToBeDeleted;
+
+        // Loops through the Directory
+        for(ArrayList<String> dirItem : directoryList) {
+            if(dirItem.get(1).equals(fileNameToDelete)) {
+                itemRead = true;
+                int stDelete = Integer.parseInt(dirItem.get(dirItem.size()-2));
+                int endDelete = Integer.parseInt(dirItem.get(dirItem.size()-1));
+
+                for(int i = stDelete; i <= endDelete; i++) {
+                    dataDisk.set(i,"*");
+                }
+
+                // Adjust Directory Numbering and Removes the directory item
+                int indexOfDeletion = directoryList.indexOf(dirItem);
+                directoryList.remove(dirItem);
+                AdjustDirectoryNumbering(indexOfDeletion);
+                // Decrements the item directory count
+                itemsInDirectory--;
+
+                break;
+            }
+        }
+
+        if(itemRead) {
+            System.out.println("File " + fileNameToDelete + " was deleted successfully");
+        } else {
+            System.out.println("File " + fileNameToDelete + " was not found or could not be read");
+        }
+    }
+
+    private static void AdjustDirectoryNumbering(int dirStart) {
+        for(ArrayList<String> dirItem : directoryList) {
+            int directoryNum = Integer.parseInt(dirItem.get(0));
+            if(dirStart < directoryNum) {
+                directoryNum--;
+                dirItem.set(0,String.valueOf(directoryNum));
+            }
         }
     }
 
@@ -231,20 +301,15 @@ public class Contiguous {
     }
 
     // Converts the integer array list to a string
-    static String convertToString(ArrayList<String> numbers) {
+    static String convertToString(ArrayList<String> directoryListItem) {
         StringBuilder builder = new StringBuilder();
-
-        for(String num : numbers) {
-            builder.append(num);
+        for(int i = 0; i < directoryListItem.size()-2; i++) {
+            builder.append(directoryListItem.get(i));
             builder.append(" ");
         }
-
-        // builder.deleteCharAt(0);
-        // builder.deleteCharAt(0);
         return builder.toString();
-
         /*
-         * Code snippet source:
+         * Modified version of code snippet source:
          * https://www.dotnetperls.com/convert-arraylist-string-java
          */
     }

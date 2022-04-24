@@ -5,3 +5,10 @@ add "third" 7
 print
 read "bob.txt"
 read "second hand.txt"
+del "bob.txt"
+print
+add "fourth in line.dat" 1
+add "fifth is big" 8
+read "fourth in line.dat"
+read "fifth is big"
+print
