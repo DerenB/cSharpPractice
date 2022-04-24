@@ -15,6 +15,8 @@ public class Contiguous {
     private static int taskID;
     private static int itemsInDirectory;
 
+    private static ArrayList<ArrayList<String>> directoryList;
+
     public Contiguous(ArrayList<String> inList) {
         // Variables
         taskList = new ArrayList<String>();
@@ -32,6 +34,9 @@ public class Contiguous {
         for(int i = 0; i < numberOfBlocks; i++) {
             dataDisk.add("*");
         }
+
+        // Directory List
+        directoryList = new ArrayList<>();
 
         // Initial simulation output
         StartOutput();
@@ -82,12 +87,15 @@ public class Contiguous {
             AddToDisk(fileName, fileSize, taskNum);
         } else if(task.equals("print")) {
             PrintDataContents();
+        } else if(task.equals("read")) {
+            ReadDisk(fileName);
         }
     }
 
     private static void AddToDisk(String fileName, int filesize, int taskNum) {
         boolean addedToDisk = false;
         if(filesize > availableDiskSpace) {
+            // Checks if there is space on the disk
             numberOfFilesNotAllocated++;
         } else {
             int diskMoveCount = numberOfBlocks;
@@ -106,24 +114,53 @@ public class Contiguous {
         }
 
         if(addedToDisk) {
+            // Gets the current head location
             int endIndex = currentHeadLocation;
+            int startIndex = endIndex - (filesize-1);
+
+            // Adds the item to the directory
+            itemsInDirectory++;
+            AddItemToDirectory(itemsInDirectory, fileName, taskNum, startIndex, endIndex);
+
+            // Replaces the asterisks in the directory with the task num
             for(int i = filesize; i > 0; i--) {
-                dataDisk.set(endIndex,"b");
+                dataDisk.set(endIndex,String.valueOf(taskNum));
                 endIndex--;
             }
             System.out.println("File " + fileName + " was added successfully");
-            itemsInDirectory++;
         } else {
             System.out.println("File " + fileName + " could not be added.");
         }
-        System.out.println();
+    }
+
+    private static void AddItemToDirectory(int directNum, String fileNa, int dirNum, int stIndex, int enIndex) {
+        // Adds an item list to the directory list
+        ArrayList<String> newDirectoryItem = new ArrayList<>();
+        newDirectoryItem.add(dirNum + ".");
+        newDirectoryItem.add(fileNa);
+        newDirectoryItem.add(",");
+        newDirectoryItem.add("Blocks");
+        for(int i = stIndex; i <= enIndex; i++) {
+            newDirectoryItem.add(String.valueOf(i));
+        }
+        directoryList.add(newDirectoryItem);
     }
 
     private static void PrintDataContents() {
-        int listNums = itemsInDirectory;
-        int iterate = 10;
+        // Header
+        System.out.println();
         System.out.println("============== Current Drive Contents =================");
         System.out.println();
+
+        // Directory Items
+        System.out.println("DIRECTORY:");
+        for(ArrayList<String> dirItem : directoryList) {
+            System.out.println(convertToString(dirItem));
+        }
+        System.out.println();
+
+        // Detail Items
+        int iterate = 10;
         System.out.println("DETAILS:");
         for(String item : dataDisk) {
             if(iterate == 1) {
@@ -134,14 +171,34 @@ public class Contiguous {
                 iterate--;
             }
         }
+        System.out.println();
     }
 
     private static void IterateHeadLocation() {
+        // Moves the header
         if(currentHeadLocation == 29) {
             currentHeadLocation = 0;
             numberOfHeadMoves++;
         } else {
             currentHeadLocation++;
+        }
+    }
+
+    private static void ReadDisk(String fileNameToRead) {
+        // Method for reading the disk
+        boolean itemRead = false;
+
+        // Loops through the Directory
+        for(ArrayList<String> dirItem : directoryList) {
+            if(dirItem.get(1).equals(fileNameToRead)) {
+                itemRead = true;
+                break;
+            }
+        }
+        if(itemRead) {
+            System.out.println("File " + fileNameToRead + " was read successfully with 1 head move(s).");
+        } else {
+            System.out.println("File " + fileNameToRead + " was not found or could not be read");
         }
     }
 
@@ -152,6 +209,7 @@ public class Contiguous {
     }
 
     private static void EndOutput() {
+        // Method for the end of the program output
         System.out.println();
         System.out.println("========= Contiguous Allocation Statistics =============");
         System.out.println();
@@ -170,5 +228,24 @@ public class Contiguous {
         } catch (NumberFormatException e) {
             return -1;
         }
+    }
+
+    // Converts the integer array list to a string
+    static String convertToString(ArrayList<String> numbers) {
+        StringBuilder builder = new StringBuilder();
+
+        for(String num : numbers) {
+            builder.append(num);
+            builder.append(" ");
+        }
+
+        // builder.deleteCharAt(0);
+        // builder.deleteCharAt(0);
+        return builder.toString();
+
+        /*
+         * Code snippet source:
+         * https://www.dotnetperls.com/convert-arraylist-string-java
+         */
     }
 }

@@ -1,4 +1,7 @@
 30
 add "bob.txt" 5
 add "second hand.txt" 8
+add "third" 7
 print
+read "bob.txt"
+read "second hand.txt"
